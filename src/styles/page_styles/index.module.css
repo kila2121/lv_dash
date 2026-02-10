@@ -17,7 +17,7 @@
 
 .floatingOrnament {
     position: absolute;
-    font-size: 24px;
+    font-size: clamp(16px, 1.5vw, 24px);
     color: rgba(139, 128, 126, 0.15);
     animation: floatSlow 15s infinite ease-in-out;
 }
@@ -25,7 +25,7 @@
 /* Летающие элементы */
 .flyingElement {
     position: fixed;
-    font-size: 24px;
+    font-size: clamp(16px, 1.5vw, 24px);
     pointer-events: none;
     z-index: 1000;
     animation: gentleFloat 2.5s ease-out forwards;
@@ -43,15 +43,15 @@
 
 .sparkle {
     position: absolute;
-    font-size: 32px;
+    font-size: clamp(20px, 2vw, 32px);
     animation: sparkleTwinkle 2s ease-in-out;
 }
 
 /* Контейнер компонента */
 .valentineContainer {
-    max-width: 700px;
+    max-width: min(700px, 90vw);
     margin: 0 auto;
-    padding: 20px;
+    padding: max(1.5vh, 15px);
     position: relative;
     z-index: 3;
 }
@@ -59,68 +59,68 @@
 /* Заголовок */
 .header {
     text-align: center;
-    margin: 40px 0 60px;
-    padding: 30px 0;
+    margin: clamp(20px, 4vh, 40px) 0 clamp(30px, 6vh, 60px);
+    padding: clamp(20px, 3vh, 30px) 0;
     border-bottom: 1px solid rgba(139, 128, 126, 0.1);
 }
 
 .titleWrapper {
-    margin-bottom: 40px;
+    margin-bottom: clamp(20px, 4vh, 40px);
 }
 
 .title {
-    font-size: 2.8rem;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
     color: var(--color-primary);
-    margin-bottom: 15px;
+    margin-bottom: clamp(10px, 1.5vh, 15px);
     font-weight: 400;
-    letter-spacing: 1px;
+    letter-spacing: clamp(0.5px, 0.5vw, 1px);
     line-height: 1.3;
     font-family: 'Playfair Display', serif;
 }
 
 .subtitle {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
     color: var(--color-secondary);
     font-style: italic;
-    letter-spacing: 2px;
+    letter-spacing: clamp(1px, 0.5vw, 2px);
 }
 
 /* Дата */
 .dateStamp {
     display: inline-block;
-    padding: 20px;
+    padding: clamp(10px, 2vh, 20px);
     position: relative;
 }
 
 .dateStampInner {
     border: 2px solid var(--color-light);
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    width: clamp(70px, 10vw, 100px);
+    height: clamp(70px, 10vw, 100px);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 15px;
+    margin: 0 auto clamp(10px, 1.5vh, 15px);
     background: rgba(255, 255, 255, 0.9);
 }
 
 .dateNumber {
-    font-size: 2.2rem;
+    font-size: clamp(1.8rem, 3vw, 2.2rem);
     color: var(--color-accent);
     font-weight: 300;
 }
 
 .dateLabel {
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 0.9vw, 0.9rem);
     color: var(--color-primary);
     text-transform: lowercase;
 }
 
 .dateStampText {
-    font-size: 0.95rem;
+    font-size: clamp(0.85rem, 1vw, 0.95rem);
     color: var(--color-secondary);
-    max-width: 300px;
+    max-width: min(300px, 80vw);
     margin: 0 auto;
     line-height: 1.5;
 }
@@ -128,23 +128,23 @@
 /* Главное сердце */
 .heartSection {
     text-align: center;
-    margin: 50px 0 70px;
-    padding: 30px 0;
+    margin: clamp(30px, 5vh, 50px) 0 clamp(40px, 7vh, 70px);
+    padding: clamp(20px, 3vh, 30px) 0;
 }
 
 .mainHeart {
-    font-size: 120px;
+    font-size: clamp(70px, 12vw, 120px);
     display: inline-block;
     cursor: pointer;
     position: relative;
-    margin-bottom: 30px;
+    margin-bottom: clamp(20px, 3vh, 30px);
     transition: all 0.5s ease;
 }
 
 .heartOutline {
     position: absolute;
-    width: 130px;
-    height: 130px;
+    width: clamp(80px, 13vw, 130px);
+    height: clamp(80px, 13vw, 130px);
     border: 3px solid var(--color-light);
     border-radius: 50%;
     top: 50%;
@@ -171,40 +171,40 @@
 
 .heartSparkle {
     position: absolute;
-    top: 20px;
-    right: -10px;
-    font-size: 40px;
+    top: clamp(15px, 2vw, 20px);
+    right: clamp(-8px, -1vw, -10px);
+    font-size: clamp(25px, 4vw, 40px);
     animation: heartSparkle 1s ease;
 }
 
 .instructions {
-    margin-top: 25px;
+    margin-top: clamp(15px, 2.5vh, 25px);
 }
 
 .instructionText {
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 1.1vw, 1.1rem);
     color: var(--color-primary);
-    margin-bottom: 15px;
+    margin-bottom: clamp(10px, 1.5vh, 15px);
     font-style: italic;
 }
 
 .counterWrapper {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: clamp(5px, 1vw, 10px);
     background: rgba(248, 242, 242, 0.8);
-    padding: 8px 20px;
+    padding: clamp(6px, 0.8vh, 8px) clamp(15px, 2vw, 20px);
     border-radius: 20px;
     border: 1px solid var(--color-light);
 }
 
 .counterLabel {
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 0.9vw, 0.9rem);
     color: var(--color-secondary);
 }
 
 .counterValue {
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 1.5vw, 1.5rem);
     color: var(--color-accent);
     font-weight: 300;
 }
@@ -214,8 +214,8 @@
     background: var(--color-bg-light);
     border: 1px solid var(--color-light);
     border-radius: 2px;
-    padding: 40px;
-    margin: 50px 0;
+    padding: clamp(20px, 4vh, 40px) clamp(15px, 3vw, 40px);
+    margin: clamp(30px, 5vh, 50px) 0;
     position: relative;
     box-shadow: 0 2px 20px rgba(139, 128, 126, 0.05);
 }
@@ -227,12 +227,22 @@
 
 .letterHeader {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 40px;
-    padding-bottom: 20px;
+    flex-direction: column;
+    gap: clamp(8px, 1vh, 12px);
+    margin-bottom: clamp(25px, 4vh, 40px);
+    padding-bottom: clamp(15px, 2vh, 20px);
     border-bottom: 1px solid var(--color-light);
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 0.9vw, 0.9rem);
     color: var(--color-secondary);
+    text-align: center;
+}
+
+@media (min-width: 481px) {
+    .letterHeader {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+    }
 }
 
 .letterBody {
@@ -240,42 +250,49 @@
 }
 
 .letterParagraph {
-    margin-bottom: 25px;
+    margin-bottom: clamp(15px, 2.5vh, 25px);
     color: var(--color-text-light);
-    font-size: 1.05rem;
+    font-size: clamp(0.95rem, 1.05vw, 1.05rem);
     text-align: justify;
+    hyphens: auto;
 }
 
 .letterParagraph:first-letter {
-    font-size: 1.4rem;
+    font-size: clamp(1.2rem, 1.4vw, 1.4rem);
     color: var(--color-accent);
     padding-right: 2px;
 }
 
 .letterSignature {
-    text-align: right;
-    margin-top: 50px;
-    padding-top: 20px;
+    text-align: center;
+    margin-top: clamp(30px, 5vh, 50px);
+    padding-top: clamp(15px, 2vh, 20px);
     border-top: 1px solid var(--color-light);
 }
 
+@media (min-width: 481px) {
+    .letterSignature {
+        text-align: right;
+    }
+}
+
 .letterSignature p {
-    margin: 5px 0;
+    margin: clamp(3px, 0.5vh, 5px) 0;
     color: var(--color-primary);
 }
 
 .signatureName {
-    font-size: 1.4rem;
+    font-size: clamp(1.2rem, 1.4vw, 1.4rem);
     color: var(--color-accent);
     font-family: 'Dancing Script', cursive;
 }
 
 .letterSeal {
     position: absolute;
-    bottom: -20px;
-    right: -20px;
-    width: 80px;
-    height: 80px;
+    bottom: clamp(-15px, -2vh, -20px);
+    right: clamp(-15px, -2vw, -20px);
+    width: clamp(60px, 8vw, 80px);
+    height: clamp(60px, 8vw, 80px);
     background: var(--color-bg-light);
     border: 2px solid var(--color-light);
     border-radius: 50%;
@@ -287,33 +304,33 @@
 
 .sealCircle {
     position: absolute;
-    width: 60px;
-    height: 60px;
+    width: clamp(45px, 6vw, 60px);
+    height: clamp(45px, 6vw, 60px);
     border: 1px solid var(--color-light);
     border-radius: 50%;
 }
 
 .sealText {
-    font-size: 0.8rem;
+    font-size: clamp(0.7rem, 0.8vw, 0.8rem);
     color: var(--color-accent);
-    letter-spacing: 1px;
+    letter-spacing: clamp(0.5px, 0.1vw, 1px);
     transform: rotate(-15deg);
 }
 
 /* Обещания */
 .promisesSection {
-    margin: 60px 0;
+    margin: clamp(40px, 6vh, 60px) 0;
 }
 
 .sectionTitle {
     text-align: center;
     color: var(--color-primary);
-    margin-bottom: 40px;
-    font-size: 1.3rem;
+    margin-bottom: clamp(25px, 4vh, 40px);
+    font-size: clamp(1.1rem, 1.3vw, 1.3rem);
     font-weight: 400;
-    letter-spacing: 1px;
+    letter-spacing: clamp(0.5px, 0.1vw, 1px);
     position: relative;
-    padding-bottom: 15px;
+    padding-bottom: clamp(10px, 1.5vh, 15px);
 }
 
 .sectionTitle::after {
@@ -322,20 +339,26 @@
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 100px;
+    width: clamp(60px, 10vw, 100px);
     height: 1px;
     background: var(--color-light);
 }
 
 .promisesGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-    margin-top: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 90vw), 1fr));
+    gap: clamp(15px, 2.5vh, 25px);
+    margin-top: clamp(20px, 3vh, 30px);
+}
+
+@media (min-width: 769px) {
+    .promisesGrid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
 }
 
 .promiseCard {
-    padding: 25px;
+    padding: clamp(20px, 2.5vh, 25px);
     background: var(--color-bg-light);
     border: 1px solid var(--color-light);
     border-radius: 2px;
@@ -350,21 +373,21 @@
 }
 
 .promiseNumber {
-    font-size: 2rem;
+    font-size: clamp(1.6rem, 2vw, 2rem);
     color: var(--color-light);
-    margin-bottom: 15px;
+    margin-bottom: clamp(10px, 1.5vh, 15px);
     font-weight: 300;
 }
 
 .promiseText {
     color: var(--color-text-light);
     line-height: 1.6;
-    margin-bottom: 15px;
-    min-height: 60px;
+    margin-bottom: clamp(10px, 1.5vh, 15px);
+    min-height: clamp(50px, 6vh, 60px);
 }
 
 .promiseUnderline {
-    width: 40px;
+    width: clamp(30px, 4vw, 40px);
     height: 2px;
     background: var(--color-light);
     margin: 0 auto;
@@ -372,27 +395,27 @@
 
 /* Секрет */
 .secretReveal {
-    margin: 50px 0;
+    margin: clamp(30px, 5vh, 50px) 0;
     animation: revealSecret 1s ease;
 }
 
 .secretEnvelope {
     position: relative;
-    max-width: 400px;
+    max-width: min(400px, 90vw);
     margin: 0 auto;
     background: var(--color-bg-light);
     border: 1px solid var(--color-light);
-    padding: 40px 30px;
+    padding: clamp(25px, 4vh, 40px) clamp(20px, 3vw, 30px);
     border-radius: 2px;
 }
 
 .envelopeFlap {
     position: absolute;
-    top: -20px;
+    top: clamp(-15px, -2vh, -20px);
     left: 50%;
     transform: translateX(-50%);
-    width: 100px;
-    height: 40px;
+    width: clamp(70px, 10vw, 100px);
+    height: clamp(25px, 4vh, 40px);
     background: var(--color-bg-light);
     border: 1px solid var(--color-light);
     border-bottom: none;
@@ -405,27 +428,27 @@
 
 .secretTitle {
     color: var(--color-primary);
-    margin-bottom: 20px;
+    margin-bottom: clamp(15px, 2vh, 20px);
     font-weight: 400;
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 1.2vw, 1.2rem);
 }
 
 .secretText {
     color: var(--color-text-light);
     line-height: 1.6;
-    margin-bottom: 25px;
-    font-size: 0.95rem;
+    margin-bottom: clamp(15px, 2.5vh, 25px);
+    font-size: clamp(0.85rem, 0.95vw, 0.95rem);
 }
 
 .secretKiss {
-    font-size: 40px;
+    font-size: clamp(30px, 4vw, 40px);
     animation: gentleBounce 2s infinite;
 }
 
 /* Пожелание */
 .wishSection {
-    margin: 60px 0;
-    padding: 40px;
+    margin: clamp(40px, 6vh, 60px) 0;
+    padding: clamp(25px, 4vh, 40px) clamp(20px, 3vw, 40px);
     background: var(--color-bg-light);
     border: 1px solid var(--color-light);
     text-align: center;
@@ -434,9 +457,9 @@
 .wishText {
     color: var(--color-text-light);
     line-height: 1.8;
-    font-size: 1.05rem;
-    margin-bottom: 30px;
-    max-width: 600px;
+    font-size: clamp(0.95rem, 1.05vw, 1.05rem);
+    margin-bottom: clamp(20px, 3vh, 30px);
+    max-width: min(600px, 85vw);
     margin-left: auto;
     margin-right: auto;
 }
@@ -445,54 +468,72 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
+    gap: clamp(10px, 1.5vw, 15px);
     color: var(--color-primary);
-    font-size: 1.1rem;
-    letter-spacing: 2px;
+    font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+    letter-spacing: clamp(1px, 0.2vw, 2px);
+    flex-wrap: wrap;
 }
 
 .wishHeart {
     color: var(--color-accent);
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 1.5vw, 1.5rem);
     animation: gentleBeat 1.5s infinite;
 }
 
 /* Футер */
 .valentineFooter {
-    margin-top: 60px;
-    padding-top: 40px;
+    margin-top: clamp(40px, 6vh, 60px);
+    padding-top: clamp(25px, 4vh, 40px);
     border-top: 1px solid var(--color-light);
     text-align: center;
 }
 
 .footerContent {
-    padding: 20px 0;
+    padding: clamp(15px, 2vh, 20px) 0;
 }
 
 .footerText {
     color: var(--color-primary);
-    margin-bottom: 15px;
-    font-size: 0.95rem;
+    margin-bottom: clamp(10px, 1.5vh, 15px);
+    font-size: clamp(0.85rem, 0.95vw, 0.95rem);
 }
 
 .footerDate {
     color: var(--color-secondary);
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 0.9vw, 0.9rem);
     font-style: italic;
 }
 
-/* Адаптивность компонента */
+/* Медиа-запросы для различных устройств */
+
+/* Большие экраны (от 1200px) */
+@media (min-width: 1200px) {
+    .valentineContainer {
+        max-width: 700px;
+    }
+}
+
+/* Планшеты (768px - 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .valentineContainer {
+        max-width: 85vw;
+    }
+
+    .letterHeader {
+        flex-direction: row;
+    }
+
+    .promisesGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Мобильные устройства (481px - 768px) */
 @media (max-width: 768px) {
     .valentineContainer {
-        padding: 15px;
-    }
-
-    .title {
-        font-size: 2rem;
-    }
-
-    .letter {
-        padding: 25px 20px;
+        max-width: 92vw;
+        padding: 15px 12px;
     }
 
     .letterHeader {
@@ -505,36 +546,190 @@
         grid-template-columns: 1fr;
     }
 
-    .memoryItem {
-        flex-direction: column;
-    }
-
-    .memoryMarker {
-        width: 100%;
-        height: 40px;
-    }
-
-    .markerDot {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .markerLine {
+    .letterSeal {
         display: none;
-    }
-
-    .memoryContent {
-        padding-left: 0;
-        text-align: center;
-    }
-
-    .heartOutline {
-        width: 110px;
-        height: 110px;
+        /* Скрываем печать на мобильных для экономии места */
     }
 }
 
-/* Обязательно добавьте анимации в CSS-модуль */
+/* Маленькие телефоны (до 480px) */
+@media (max-width: 480px) {
+    .valentineContainer {
+        padding: 12px 8px;
+    }
+
+    .title {
+        font-size: 1.6rem;
+        letter-spacing: 0.3px;
+    }
+
+    .mainHeart {
+        font-size: 60px;
+    }
+
+    .heartOutline {
+        width: 70px;
+        height: 70px;
+    }
+
+    .letter {
+        padding: 20px 15px;
+        margin: 25px 0;
+    }
+
+    .letterParagraph {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        text-align: left;
+        hyphens: auto;
+    }
+
+    .letterSignature {
+        margin-top: 25px;
+        padding-top: 15px;
+    }
+
+    .promiseCard {
+        padding: 18px 15px;
+    }
+
+    .promiseText {
+        min-height: auto;
+        font-size: 0.9rem;
+    }
+
+    .wishSection {
+        padding: 25px 15px;
+        margin: 30px 0;
+    }
+
+    .wishDecoration {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+/* Очень маленькие телефоны (до 360px) */
+@media (max-width: 360px) {
+    .title {
+        font-size: 1.4rem;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+    }
+
+    .dateStampInner {
+        width: 60px;
+        height: 60px;
+    }
+
+    .dateNumber {
+        font-size: 1.5rem;
+    }
+
+    .mainHeart {
+        font-size: 50px;
+    }
+
+    .heartOutline {
+        width: 60px;
+        height: 60px;
+    }
+
+    .letter {
+        padding: 18px 12px;
+    }
+
+    .letterParagraph {
+        font-size: 0.85rem;
+    }
+
+    .promiseCard {
+        padding: 15px 12px;
+    }
+
+    .counterWrapper {
+        padding: 5px 15px;
+    }
+}
+
+/* Ориентация ландшафт для мобильных */
+@media (max-height: 500px) and (orientation: landscape) {
+    .valentinePage {
+        min-height: auto;
+    }
+
+    .header {
+        margin: 15px 0 25px;
+        padding: 15px 0;
+    }
+
+    .titleWrapper {
+        margin-bottom: 20px;
+    }
+
+    .heartSection {
+        margin: 20px 0 30px;
+        padding: 15px 0;
+    }
+
+    .mainHeart {
+        font-size: 60px;
+        margin-bottom: 15px;
+    }
+
+    .letter {
+        margin: 20px 0;
+        padding: 20px;
+    }
+
+    .promisesSection {
+        margin: 25px 0;
+    }
+
+    .secretReveal {
+        margin: 20px 0;
+    }
+
+    .wishSection {
+        margin: 25px 0;
+        padding: 20px;
+    }
+}
+
+/* Поддержка темной темы */
+@media (prefers-color-scheme: dark) {
+    .dateStampInner {
+        background: rgba(30, 30, 30, 0.9);
+    }
+
+    .counterWrapper {
+        background: rgba(50, 50, 50, 0.8);
+    }
+}
+
+/* Поддержка редукции движения */
+@media (prefers-reduced-motion: reduce) {
+
+    .floatingOrnament,
+    .flyingElement,
+    .sparkle,
+    .heartFill,
+    .mainHeart.heartWarm .heartFill,
+    .heartSparkle,
+    .secretKiss,
+    .wishHeart {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .promiseCard:hover {
+        transform: none;
+    }
+}
+
+/* Анимации */
 @keyframes floatSlow {
 
     0%,
@@ -630,5 +825,26 @@
 
     50% {
         transform: scale(1.1);
+    }
+}
+
+/* Улучшенная поддержка тач-устройств */
+@media (hover: none) and (pointer: coarse) {
+    .promiseCard:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .mainHeart:hover .heartFill {
+        transform: none;
+    }
+
+    .promiseCard:active {
+        transform: translateY(-2px);
+    }
+
+    .mainHeart:active .heartFill {
+        color: var(--color-accent);
+        transform: scale(1.05);
     }
 }

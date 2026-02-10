@@ -1,26 +1,43 @@
 /* styles/globals.css */
 /* Сброс и базовые стили */
-* {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+:where([hidden]) {
+    display: none !important;
+}
+
+:where(html) {
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    scroll-padding-top: 2rem;
 }
 
 body {
-    font-family: 'Georgia', 'Times New Roman', serif;
+    font-family: 'Georgia', 'Times New Roman', serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     color: #2c1810;
     background: #ffffff;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+    min-height: 100vh;
+    min-height: 100dvh;
 }
 
-/* Переменные цветов */
+/* Переменные цветов с поддержкой темной темы */
 :root {
     --color-primary: #8b807e;
     --color-secondary: #a89b99;
@@ -30,9 +47,297 @@ body {
     --color-bg-light: #fefcfb;
     --color-text: #2c1810;
     --color-text-light: #5a4d4a;
+    --color-border: rgba(139, 128, 126, 0.15);
+
+    /* Семантические цвета */
+    --color-surface: #ffffff;
+    --color-surface-alt: #fefcfb;
+
+    /* Тени */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 12px rgba(139, 128, 126, 0.08);
+    --shadow-lg: 0 10px 30px rgba(139, 128, 126, 0.12);
+
+    /* Радиусы */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+    --radius-full: 9999px;
+
+    /* Отступы */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-xxl: 3rem;
+
+    /* Транзиции */
+    --transition-fast: 150ms ease;
+    --transition-base: 300ms ease;
+    --transition-slow: 500ms ease;
 }
 
-/* Анимации */
+/* Темная тема */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-primary: #c2b8b6;
+        --color-secondary: #9d908e;
+        --color-accent: #e6c0c0;
+        --color-light: #3a3332;
+        --color-bg: #1a1514;
+        --color-bg-light: #221d1c;
+        --color-text: #f5f0ee;
+        --color-text-light: #c7bebc;
+        --color-border: rgba(194, 184, 182, 0.15);
+        --color-surface: #221d1c;
+        --color-surface-alt: #2a2524;
+    }
+}
+
+/* Для пользователей с редукцией движения */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Стили выделения текста */
+::selection {
+    background-color: var(--color-accent);
+    color: var(--color-text);
+    text-shadow: none;
+}
+
+::-moz-selection {
+    background-color: var(--color-accent);
+    color: var(--color-text);
+    text-shadow: none;
+}
+
+/* Базовые стили для типографики */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 400;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+    text-wrap: balance;
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    letter-spacing: -0.02em;
+}
+
+h2 {
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+h3 {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+h4 {
+    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+}
+
+p {
+    margin-bottom: 1rem;
+    text-wrap: pretty;
+    max-width: 70ch;
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+a {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    text-decoration-skip-ink: auto;
+    text-underline-offset: 0.125em;
+}
+
+a:hover,
+a:focus-visible {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+a:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+/* Базовые стили для кнопок и интерактивных элементов */
+button,
+input,
+textarea,
+select {
+    font: inherit;
+    color: inherit;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+}
+
+button {
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border: none;
+    background: var(--color-accent);
+    color: var(--color-text);
+}
+
+button:hover:not(:disabled) {
+    background: var(--color-primary);
+    color: white;
+}
+
+button:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Улучшенные медиа-элементы */
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+img {
+    border-radius: var(--radius-sm);
+}
+
+/* Списки */
+ul,
+ol {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+/* Цитаты */
+blockquote {
+    border-left: 3px solid var(--color-accent);
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: var(--color-text-light);
+}
+
+/* Утилитарные классы */
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.container-narrow {
+    max-width: 800px;
+}
+
+/* Сеточная система для вспомогательных компонентов */
+.grid {
+    display: grid;
+    gap: var(--spacing-md);
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+}
+
+.flex {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.gap-sm {
+    gap: var(--spacing-sm);
+}
+
+.gap-md {
+    gap: var(--spacing-md);
+}
+
+.gap-lg {
+    gap: var(--spacing-lg);
+}
+
+/* Анимации с поддержкой prefers-reduced-motion */
 @keyframes floatSlow {
 
     0%,
@@ -131,54 +436,197 @@ body {
     }
 }
 
-/* Базовые стили для типографики */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-weight: 400;
-    line-height: 1.3;
-    margin-bottom: 1rem;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
-p {
-    margin-bottom: 1rem;
-}
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
 
-a {
-    color: var(--color-accent);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: var(--color-primary);
-}
-
-/* Утилитарные классы */
-.text-center {
-    text-align: center;
-}
-
-.text-right {
-    text-align: right;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Адаптивные медиа-запросы */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 100%;
+        padding: 0 var(--spacing-lg);
+    }
+}
+
 @media (max-width: 768px) {
+    html {
+        font-size: 15px;
+    }
+
+    .container {
+        padding: 0 var(--spacing-md);
+    }
+
+    h1 {
+        font-size: clamp(1.75rem, 6vw, 2.5rem);
+    }
+
+    h2 {
+        font-size: clamp(1.4rem, 5vw, 2rem);
+    }
+}
+
+@media (max-width: 480px) {
     html {
         font-size: 14px;
     }
 
     .container {
-        padding: 0 15px;
+        padding: 0 var(--spacing-sm);
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+}
+
+@media (max-width: 360px) {
+    html {
+        font-size: 13px;
+    }
+}
+
+/* Ландшафтная ориентация на мобильных */
+@media (max-height: 500px) and (orientation: landscape) {
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        padding: 0 var(--spacing-sm);
+    }
+}
+
+/* Улучшенная поддержка печати */
+@media print {
+
+    *,
+    *::before,
+    *::after {
+        background: transparent !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]::after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]::after {
+        content: " (" attr(title) ")";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group;
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
+
+/* Улучшенный скроллбар */
+@media (pointer: fine) {
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--color-bg-light);
+        border-radius: var(--radius-full);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--color-light);
+        border-radius: var(--radius-full);
+        border: 2px solid var(--color-bg-light);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--color-secondary);
+    }
+
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: var(--color-light) var(--color-bg-light);
+    }
+}
+
+/* Улучшенная фокусная обводка для клавиатурной навигации */
+:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+/* Убираем стандартную обводку для мыши */
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Улучшенные состояния инвалидности */
+[aria-disabled="true"],
+[disabled] {
+    cursor: not-allowed;
+    opacity: 0.6;
+    user-select: none;
+}
+
+/* Поддержка высокого контраста */
+@media (prefers-contrast: high) {
+    :root {
+        --color-primary: #5a4d4a;
+        --color-accent: #b58383;
+        --color-text: #000000;
+        --color-text-light: #333333;
     }
 }
