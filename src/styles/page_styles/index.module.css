@@ -1,0 +1,634 @@
+/* styles/page_styles/ValentineCard.module.css */
+.valentinePage {
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    cursor: default;
+}
+
+/* Фоновые украшения */
+.backgroundElements {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.floatingOrnament {
+    position: absolute;
+    font-size: 24px;
+    color: rgba(139, 128, 126, 0.15);
+    animation: floatSlow 15s infinite ease-in-out;
+}
+
+/* Летающие элементы */
+.flyingElement {
+    position: fixed;
+    font-size: 24px;
+    pointer-events: none;
+    z-index: 1000;
+    animation: gentleFloat 2.5s ease-out forwards;
+    color: rgba(255, 182, 193, 0.8);
+}
+
+/* Искорки */
+.sparkleOverlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.sparkle {
+    position: absolute;
+    font-size: 32px;
+    animation: sparkleTwinkle 2s ease-in-out;
+}
+
+/* Контейнер компонента */
+.valentineContainer {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 3;
+}
+
+/* Заголовок */
+.header {
+    text-align: center;
+    margin: 40px 0 60px;
+    padding: 30px 0;
+    border-bottom: 1px solid rgba(139, 128, 126, 0.1);
+}
+
+.titleWrapper {
+    margin-bottom: 40px;
+}
+
+.title {
+    font-size: 2.8rem;
+    color: var(--color-primary);
+    margin-bottom: 15px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    line-height: 1.3;
+    font-family: 'Playfair Display', serif;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--color-secondary);
+    font-style: italic;
+    letter-spacing: 2px;
+}
+
+/* Дата */
+.dateStamp {
+    display: inline-block;
+    padding: 20px;
+    position: relative;
+}
+
+.dateStampInner {
+    border: 2px solid var(--color-light);
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.dateNumber {
+    font-size: 2.2rem;
+    color: var(--color-accent);
+    font-weight: 300;
+}
+
+.dateLabel {
+    font-size: 0.9rem;
+    color: var(--color-primary);
+    text-transform: lowercase;
+}
+
+.dateStampText {
+    font-size: 0.95rem;
+    color: var(--color-secondary);
+    max-width: 300px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+/* Главное сердце */
+.heartSection {
+    text-align: center;
+    margin: 50px 0 70px;
+    padding: 30px 0;
+}
+
+.mainHeart {
+    font-size: 120px;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 30px;
+    transition: all 0.5s ease;
+}
+
+.heartOutline {
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    border: 3px solid var(--color-light);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+.heartFill {
+    color: #e8c8c8;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.mainHeart:hover .heartFill {
+    color: var(--color-accent);
+    transform: scale(1.1);
+}
+
+.mainHeart.heartWarm .heartFill {
+    color: var(--color-accent);
+    animation: gentlePulse 1.5s infinite alternate;
+}
+
+.heartSparkle {
+    position: absolute;
+    top: 20px;
+    right: -10px;
+    font-size: 40px;
+    animation: heartSparkle 1s ease;
+}
+
+.instructions {
+    margin-top: 25px;
+}
+
+.instructionText {
+    font-size: 1.1rem;
+    color: var(--color-primary);
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+.counterWrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(248, 242, 242, 0.8);
+    padding: 8px 20px;
+    border-radius: 20px;
+    border: 1px solid var(--color-light);
+}
+
+.counterLabel {
+    font-size: 0.9rem;
+    color: var(--color-secondary);
+}
+
+.counterValue {
+    font-size: 1.5rem;
+    color: var(--color-accent);
+    font-weight: 300;
+}
+
+/* Письмо */
+.letter {
+    background: var(--color-bg-light);
+    border: 1px solid var(--color-light);
+    border-radius: 2px;
+    padding: 40px;
+    margin: 50px 0;
+    position: relative;
+    box-shadow: 0 2px 20px rgba(139, 128, 126, 0.05);
+}
+
+.letterContent {
+    position: relative;
+    z-index: 2;
+}
+
+.letterHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--color-light);
+    font-size: 0.9rem;
+    color: var(--color-secondary);
+}
+
+.letterBody {
+    line-height: 1.8;
+}
+
+.letterParagraph {
+    margin-bottom: 25px;
+    color: var(--color-text-light);
+    font-size: 1.05rem;
+    text-align: justify;
+}
+
+.letterParagraph:first-letter {
+    font-size: 1.4rem;
+    color: var(--color-accent);
+    padding-right: 2px;
+}
+
+.letterSignature {
+    text-align: right;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-light);
+}
+
+.letterSignature p {
+    margin: 5px 0;
+    color: var(--color-primary);
+}
+
+.signatureName {
+    font-size: 1.4rem;
+    color: var(--color-accent);
+    font-family: 'Dancing Script', cursive;
+}
+
+.letterSeal {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 80px;
+    height: 80px;
+    background: var(--color-bg-light);
+    border: 2px solid var(--color-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+}
+
+.sealCircle {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 1px solid var(--color-light);
+    border-radius: 50%;
+}
+
+.sealText {
+    font-size: 0.8rem;
+    color: var(--color-accent);
+    letter-spacing: 1px;
+    transform: rotate(-15deg);
+}
+
+/* Обещания */
+.promisesSection {
+    margin: 60px 0;
+}
+
+.sectionTitle {
+    text-align: center;
+    color: var(--color-primary);
+    margin-bottom: 40px;
+    font-size: 1.3rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.sectionTitle::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 1px;
+    background: var(--color-light);
+}
+
+.promisesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.promiseCard {
+    padding: 25px;
+    background: var(--color-bg-light);
+    border: 1px solid var(--color-light);
+    border-radius: 2px;
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.promiseCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(139, 128, 126, 0.1);
+}
+
+.promiseNumber {
+    font-size: 2rem;
+    color: var(--color-light);
+    margin-bottom: 15px;
+    font-weight: 300;
+}
+
+.promiseText {
+    color: var(--color-text-light);
+    line-height: 1.6;
+    margin-bottom: 15px;
+    min-height: 60px;
+}
+
+.promiseUnderline {
+    width: 40px;
+    height: 2px;
+    background: var(--color-light);
+    margin: 0 auto;
+}
+
+/* Секрет */
+.secretReveal {
+    margin: 50px 0;
+    animation: revealSecret 1s ease;
+}
+
+.secretEnvelope {
+    position: relative;
+    max-width: 400px;
+    margin: 0 auto;
+    background: var(--color-bg-light);
+    border: 1px solid var(--color-light);
+    padding: 40px 30px;
+    border-radius: 2px;
+}
+
+.envelopeFlap {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 40px;
+    background: var(--color-bg-light);
+    border: 1px solid var(--color-light);
+    border-bottom: none;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.envelopeBody {
+    text-align: center;
+}
+
+.secretTitle {
+    color: var(--color-primary);
+    margin-bottom: 20px;
+    font-weight: 400;
+    font-size: 1.2rem;
+}
+
+.secretText {
+    color: var(--color-text-light);
+    line-height: 1.6;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+}
+
+.secretKiss {
+    font-size: 40px;
+    animation: gentleBounce 2s infinite;
+}
+
+/* Пожелание */
+.wishSection {
+    margin: 60px 0;
+    padding: 40px;
+    background: var(--color-bg-light);
+    border: 1px solid var(--color-light);
+    text-align: center;
+}
+
+.wishText {
+    color: var(--color-text-light);
+    line-height: 1.8;
+    font-size: 1.05rem;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wishDecoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    color: var(--color-primary);
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+}
+
+.wishHeart {
+    color: var(--color-accent);
+    font-size: 1.5rem;
+    animation: gentleBeat 1.5s infinite;
+}
+
+/* Футер */
+.valentineFooter {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--color-light);
+    text-align: center;
+}
+
+.footerContent {
+    padding: 20px 0;
+}
+
+.footerText {
+    color: var(--color-primary);
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+.footerDate {
+    color: var(--color-secondary);
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* Адаптивность компонента */
+@media (max-width: 768px) {
+    .valentineContainer {
+        padding: 15px;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .letter {
+        padding: 25px 20px;
+    }
+
+    .letterHeader {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .promisesGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .memoryItem {
+        flex-direction: column;
+    }
+
+    .memoryMarker {
+        width: 100%;
+        height: 40px;
+    }
+
+    .markerDot {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .markerLine {
+        display: none;
+    }
+
+    .memoryContent {
+        padding-left: 0;
+        text-align: center;
+    }
+
+    .heartOutline {
+        width: 110px;
+        height: 110px;
+    }
+}
+
+/* Обязательно добавьте анимации в CSS-модуль */
+@keyframes floatSlow {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.1;
+    }
+
+    50% {
+        transform: translateY(-40px) rotate(180deg);
+        opacity: 0.3;
+    }
+}
+
+@keyframes gentleFloat {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(calc(var(--tx, 0) * 0.5), -120px) scale(0.8);
+    }
+}
+
+@keyframes sparkleTwinkle {
+
+    0%,
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes gentlePulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.9;
+    }
+
+    100% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+}
+
+@keyframes heartSparkle {
+    0% {
+        transform: scale(0) rotate(0deg);
+    }
+
+    100% {
+        transform: scale(1) rotate(360deg);
+    }
+}
+
+@keyframes gentleBounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes revealSecret {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes gentleBeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
