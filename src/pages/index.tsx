@@ -9,12 +9,12 @@ interface Heart {
 }
 
 function ValentineCard(): JSX.Element {
-
   const [hearts, setHearts] = useState<Heart[]>([]);
   const [kissCount, setKissCount] = useState<number>(0);
   const [secretVisible, setSecretVisible] = useState<boolean>(false);
   const [showSparkles, setShowSparkles] = useState<boolean>(false);
-  
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
   const startDay = new Date("02-02-2026"); 
   const currentDay = new Date();
   const daysTogether: number = Math.floor((Number(currentDay) - Number(startDay)) / (1000 * 60 * 60 * 24));
@@ -76,12 +76,24 @@ function ValentineCard(): JSX.Element {
   const handleClick = (e: MouseEvent) => createHeart(e);
   const handleTouch = (e: TouchEvent) => createHeart(e);
 
+  const toggleTheme = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsDarkMode(prev => !prev);
+  };
+
   return (
     <div 
-      className={styles.valentinePage}
+      className={`${styles.valentinePage} ${isDarkMode ? styles.darkTheme : ''}`}
       onClick={handleClick}
       onTouchStart={handleTouch}
     >
+      <button 
+        className={styles.themeToggle}
+        onClick={toggleTheme}
+      >
+        {isDarkMode ? 'Белая тема' : 'Темная тема'}
+      </button>
+      
       <div className={styles.backgroundElements}>
         <div className={styles.floatingOrnament}>❦</div>
         <div className={styles.floatingOrnament} style={{ left: '15%', top: '20%', animationDelay: '1.2s' }}>✽</div>
@@ -136,7 +148,10 @@ function ValentineCard(): JSX.Element {
           <div className={styles.heartSection}>
             <div 
               className={`${styles.mainHeart} ${kissCount >= 3 ? styles.heartWarm : ''}`}
-              onClick={handleHeartClick}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleHeartClick();
+              }}
             >
               <div className={styles.heartOutline}></div>
               <div className={styles.heartFill}>♥</div>
