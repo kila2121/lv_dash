@@ -1,4 +1,4 @@
-import React, { useState, MouseEvent, TouchEvent, JSX } from 'react';
+import React, { useState, MouseEvent, TouchEvent, JSX, useEffect } from 'react';
 import styles from '@/styles/page_styles/index.module.css'
 
 interface Heart {
@@ -13,7 +13,31 @@ function ValentineCard(): JSX.Element {
   const [kissCount, setKissCount] = useState<number>(0);
   const [secretVisible, setSecretVisible] = useState<boolean>(false);
   const [showSparkles, setShowSparkles] = useState<boolean>(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    
+    const timer = setTimeout(() => {
+      setIsClient(true);
+      const savedCount = localStorage.getItem('currentKissCount');
+      if (savedCount) {
+        setKissCount(Number(savedCount));
+      }
+
+      const savedTheme = localStorage.getItem('valentine-theme');
+      if (savedTheme) {
+        setIsDarkMode(savedTheme === 'dark');
+      }
+      return () => clearTimeout(timer)
+    }, 100);
+  }, []);
+
+  useEffect(() => {
+    if (isClient) {
+      localStorage.setItem('valentine-theme', isDarkMode ? 'dark' : 'light');
+    }
+  }, [isDarkMode, isClient]);
 
   const startDay = new Date("02-02-2026"); 
   const currentDay = new Date();
@@ -73,13 +97,41 @@ function ValentineCard(): JSX.Element {
     }
   };
 
+  useEffect(() => {
+    if (isClient) {
+      localStorage.setItem('currentKissCount', kissCount.toString());
+    }
+  }, [kissCount, isClient]);
+
   const handleClick = (e: MouseEvent) => createHeart(e);
   const handleTouch = (e: TouchEvent) => createHeart(e);
 
   const toggleTheme = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setIsDarkMode(prev => !prev);
+    setIsDarkMode(prev => {
+      const newValue = !prev;
+      if (isClient) {
+        localStorage.setItem('valentine-theme', newValue ? 'dark' : 'light');
+      }
+      return newValue;
+    });
   };
+
+  if (!isClient) {
+    return (
+      <div className={styles.valentinePage}>
+        <div className={styles.valentineContainer}>
+          <header className={styles.header}>
+            <div className={styles.titleWrapper}>
+              <h1 className={styles.title}>
+                Для тебя, моя {personalDetails.petNames[0]}
+              </h1>
+            </div>
+          </header>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div 
