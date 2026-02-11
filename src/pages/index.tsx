@@ -1,5 +1,7 @@
 import React, { useState, MouseEvent, TouchEvent, JSX, useEffect } from 'react';
 import styles from '@/styles/page_styles/index.module.css'
+import { AuthModal } from '../../component/authModal';
+import { useAuth } from './_app';
 
 interface Heart {
   id: number;
@@ -15,7 +17,8 @@ function ValentineCard(): JSX.Element {
   const [showSparkles, setShowSparkles] = useState<boolean>(false);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
   const [isClient, setIsClient] = useState(false);
-
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const {user, logout} = useAuth()
   useEffect(() => {
     
     const timer = setTimeout(() => {
@@ -29,8 +32,8 @@ function ValentineCard(): JSX.Element {
       if (savedTheme) {
         setIsDarkMode(savedTheme === 'dark');
       }
-      return () => clearTimeout(timer)
     }, 100);
+    return () => clearTimeout(timer)
   }, []);
 
   useEffect(() => {
@@ -117,6 +120,11 @@ function ValentineCard(): JSX.Element {
     });
   };
 
+  const adminModalOpen = (e: React.MouseEvent) =>{
+    e.stopPropagation();
+    setIsAuthModalOpen(true)
+  }
+
   if (!isClient) {
     return (
       <div className={styles.valentinePage}>
@@ -139,13 +147,23 @@ function ValentineCard(): JSX.Element {
       onClick={handleClick}
       onTouchStart={handleTouch}
     >
-      <button 
-        className={styles.themeToggle}
-        onClick={toggleTheme}
-      >
-        {isDarkMode ? 'Белая тема' : 'Темная тема'}
-      </button>
+      <div className={styles.topControls}>
+        <button 
+          className={styles.themeToggle}
+          onClick={toggleTheme}
+        >
+          {isDarkMode ? 'Белая тема' : 'Темная тема'}
+        </button>
+        
+        {user?<button className={styles.adminButton}onClick={logout}>Выйти</button>:
+        <button className={styles.adminButton}onClick={adminModalOpen}>Войти</button>}
+      </div>
       
+      <AuthModal 
+        isOpen={isAuthModalOpen} 
+        onClose={() => setIsAuthModalOpen(false)}
+        className={styles.authModal}
+      />
       <div className={styles.backgroundElements}>
         <div className={styles.floatingOrnament}>❦</div>
         <div className={styles.floatingOrnament} style={{ left: '15%', top: '20%', animationDelay: '1.2s' }}>✽</div>
