@@ -1,7 +1,8 @@
 import React, { useState, MouseEvent, TouchEvent, JSX, useEffect } from 'react';
 import styles from '@/styles/page_styles/index.module.css'
-import { AuthModal } from '../../component/authModal';
+import { AuthModal } from '../../component/authModal/authModal';
 import { useAuth } from './_app';
+import { SettingModal } from '../../component/Settings/settings';
 
 interface Heart {
   id: number;
@@ -17,8 +18,12 @@ function ValentineCard(): JSX.Element {
   const [showSparkles, setShowSparkles] = useState<boolean>(false);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
   const [isClient, setIsClient] = useState(false);
+
+  
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const {user, logout} = useAuth()
+  const [isSettingModalOpen, setIsSettingModalOpen] = useState(false);
+
+  const {user, userSetting} = useAuth()
   useEffect(() => {
     
     const timer = setTimeout(() => {
@@ -45,6 +50,11 @@ function ValentineCard(): JSX.Element {
   const startDay = new Date("02-02-2026"); 
   const currentDay = new Date();
   const daysTogether: number = Math.floor((Number(currentDay) - Number(startDay)) / (1000 * 60 * 60 * 24));
+  const meetingDay: number | string = userSetting?.want_to_date? Math.floor(
+      (new Date(userSetting.want_to_date).getTime() - currentDay.getTime()) / 
+      (1000 * 60 * 60 * 24)
+    )
+  : 'не указана';
 
   const personalDetails = {
     yourName: 'Тема',
@@ -99,7 +109,6 @@ function ValentineCard(): JSX.Element {
       setSecretVisible(true);
     }
   };
-
   useEffect(() => {
     if (isClient) {
       localStorage.setItem('currentKissCount', kissCount.toString());
@@ -124,6 +133,12 @@ function ValentineCard(): JSX.Element {
     e.stopPropagation();
     setIsAuthModalOpen(true)
   }
+
+  const settingModalOpen = (e: React.MouseEvent) =>{
+    e.stopPropagation();
+    setIsSettingModalOpen(true)
+  }
+
 
   if (!isClient) {
     return (
@@ -155,8 +170,10 @@ function ValentineCard(): JSX.Element {
           {isDarkMode ? 'Белая тема' : 'Темная тема'}
         </button>
         
-        {user?<button className={styles.adminButton}onClick={logout}>Выйти</button>:
-        <button className={styles.adminButton}onClick={adminModalOpen}>Войти</button>}
+        {!user?<button className={styles.adminButton}onClick={adminModalOpen}>Войти</button>:<></>}
+
+        {user?.login==="Admin"?<button onClick={settingModalOpen}>Настройки</button>:<></>}
+
       </div>
       
       <AuthModal 
@@ -164,6 +181,11 @@ function ValentineCard(): JSX.Element {
         onClose={() => setIsAuthModalOpen(false)}
         className={styles.authModal}
       />
+      <SettingModal 
+        isOpen={isSettingModalOpen}
+        onClose={()=>setIsSettingModalOpen(false)}
+        className={styles.settModal}
+        />
       <div className={styles.backgroundElements}>
         <div className={styles.floatingOrnament}>❦</div>
         <div className={styles.floatingOrnament} style={{ left: '15%', top: '20%', animationDelay: '1.2s' }}>✽</div>
@@ -202,6 +224,9 @@ function ValentineCard(): JSX.Element {
             </h1>
             <p className={styles.subtitle}>
               Просто письмо от сердца к сердцу
+            </p>
+            <p>
+              {userSetting?.want_to_date? "мы увидимся с тобой через: " + String(meetingDay): <></> }
             </p>
           </div>
           
