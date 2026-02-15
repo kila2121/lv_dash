@@ -1,5 +1,3 @@
-/* authModal.module.css */
-
 .overlay {
     position: fixed;
     top: 0;
@@ -8,58 +6,58 @@
     bottom: 0;
     background-color: rgba(255, 255, 255, 0.75);
     backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
     opacity: 0;
     animation: modalFadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    will-change: opacity;
 }
 
 .modal {
     background: var(--color-bg-light);
     border-radius: 3px;
-    padding: 48px 40px;
-    max-width: 420px;
+    padding: clamp(24px, 5vh, 48px) clamp(16px, 4vw, 40px);
+    max-width: min(420px, 90vw);
     width: 90%;
-    max-height: 90vh;
+    max-height: min(90vh, 800px);
     overflow-y: auto;
     border: 1px solid rgba(240, 230, 230, 0.8);
     box-shadow: 0 20px 40px rgba(139, 128, 126, 0.12);
     position: relative;
     transform: scale(0.95);
     animation: modalZoomIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    -webkit-overflow-scrolling: touch;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
-/* Кастомный скролл */
 .modal::-webkit-scrollbar {
-    width: 6px;
+    width: 4px;
 }
 
 .modal::-webkit-scrollbar-track {
     background: var(--color-bg);
-    border-radius: 3px;
+    border-radius: 2px;
 }
 
 .modal::-webkit-scrollbar-thumb {
     background: rgba(139, 128, 126, 0.3);
-    border-radius: 3px;
-}
-
-.modal::-webkit-scrollbar-thumb:hover {
-    background: var(--color-secondary);
+    border-radius: 2px;
 }
 
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 32px;
+    margin-bottom: clamp(20px, 3vh, 32px);
 }
 
 .header h2 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
+    font-size: clamp(1.3rem, 5vw, 1.8rem);
     font-weight: 300;
     color: var(--color-primary);
     margin: 0;
@@ -67,64 +65,69 @@
 }
 
 .closeButton {
-    width: 36px;
-    height: 36px;
+    width: clamp(28px, 5vw, 36px);
+    height: clamp(28px, 5vw, 36px);
     border-radius: 50%;
     background: transparent;
     border: 1px solid rgba(240, 230, 230, 0.6);
     color: var(--color-secondary);
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.2s ease;
     padding: 0;
-    line-height: 1;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.closeButton:hover {
-    background: var(--color-accent);
-    border-color: var(--color-accent);
-    color: white;
-    transform: rotate(90deg);
+@media (hover: hover) {
+    .closeButton:hover {
+        background: var(--color-accent);
+        border-color: var(--color-accent);
+        color: white;
+        transform: rotate(90deg);
+    }
 }
 
 .form {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: clamp(16px, 2vh, 24px);
 }
 
 .loginForm {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: clamp(12px, 1.5vh, 16px);
 }
 
 .formGroup {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: clamp(4px, 1vh, 8px);
 }
 
 .label {
-    font-size: 0.85rem;
+    font-size: clamp(0.75rem, 2vw, 0.85rem);
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     color: var(--color-secondary);
     font-weight: 300;
 }
 
 .input {
-    padding: 14px 16px;
+    padding: clamp(10px, 2vh, 14px) clamp(12px, 2vw, 16px);
     background: var(--color-bg);
     border: 1px solid rgba(240, 230, 230, 0.8);
     border-radius: 3px;
-    font-size: 1rem;
+    font-size: clamp(0.95rem, 2.5vw, 1rem);
     color: var(--color-text-light);
-    transition: all 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
     font-family: inherit;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-appearance: none;
 }
 
 .input:focus {
@@ -140,25 +143,24 @@
 .errorText {
     color: #c45a5a;
     font-size: 0.8rem;
-    margin-top: 4px;
-    letter-spacing: 0.5px;
+    margin-top: 2px;
 }
 
 .errorMessage {
     background: rgba(224, 160, 160, 0.1);
     border: 1px solid rgba(224, 160, 160, 0.3);
-    padding: 14px 18px;
+    padding: clamp(10px, 2vh, 14px);
     border-radius: 3px;
     color: #c45a5a;
     font-size: 0.95rem;
     text-align: center;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 
 .successMessage {
     background: rgba(160, 200, 180, 0.1);
     border: 1px solid rgba(160, 200, 180, 0.3);
-    padding: 14px 18px;
+    padding: clamp(10px, 2vh, 14px);
     border-radius: 3px;
     color: #4a7a6a;
     font-size: 0.95rem;
@@ -169,22 +171,31 @@
     background: var(--color-accent);
     color: white;
     border: none;
-    padding: 16px 24px;
+    padding: clamp(12px, 2.5vh, 16px) clamp(16px, 3vw, 24px);
     border-radius: 3px;
-    font-size: 1rem;
-    letter-spacing: 2px;
+    font-size: clamp(0.95rem, 2.5vw, 1rem);
+    letter-spacing: 1px;
     text-transform: uppercase;
     font-weight: 400;
     cursor: pointer;
-    transition: all 0.25s ease;
-    margin-top: 8px;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    margin-top: 4px;
     box-shadow: 0 4px 16px rgba(212, 168, 168, 0.3);
+    width: 100%;
+    min-height: 44px;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.submitButton:hover:not(:disabled) {
-    background: #b28b8b;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(212, 168, 168, 0.4);
+@media (hover: hover) {
+    .submitButton:hover:not(:disabled) {
+        background: #b28b8b;
+        transform: translateY(-1px);
+        box-shadow: 0 8px 24px rgba(212, 168, 168, 0.4);
+    }
+}
+
+.submitButton:active:not(:disabled) {
+    transform: translateY(1px);
 }
 
 .submitButton:disabled {
@@ -192,15 +203,15 @@
     cursor: not-allowed;
 }
 
-/* ===== ТЁМНАЯ ТЕМА (глобальный контекст) ===== */
 :global(.valentinePage.darkTheme) .overlay {
     background-color: rgba(20, 18, 17, 0.85);
+    backdrop-filter: blur(8px) brightness(0.8);
 }
 
 :global(.valentinePage.darkTheme) .modal {
     background: var(--color-bg-light);
     border-color: rgba(96, 90, 90, 0.8);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 :global(.valentinePage.darkTheme) .modal::-webkit-scrollbar-track {
@@ -209,10 +220,6 @@
 
 :global(.valentinePage.darkTheme) .modal::-webkit-scrollbar-thumb {
     background: rgba(194, 184, 182, 0.2);
-}
-
-:global(.valentinePage.darkTheme) .modal::-webkit-scrollbar-thumb:hover {
-    background: rgba(194, 184, 182, 0.4);
 }
 
 :global(.valentinePage.darkTheme) .header h2 {
@@ -238,126 +245,82 @@
 
 :global(.valentinePage.darkTheme) .input:focus {
     border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px rgba(212, 168, 168, 0.15);
+    box-shadow: 0 0 0 3px rgba(212, 168, 168, 0.2);
 }
 
 :global(.valentinePage.darkTheme) .errorMessage {
-    background: rgba(196, 90, 90, 0.1);
-    border-color: rgba(196, 90, 90, 0.2);
+    background: rgba(196, 90, 90, 0.15);
+    border-color: rgba(196, 90, 90, 0.3);
 }
 
 :global(.valentinePage.darkTheme) .successMessage {
-    background: rgba(90, 140, 120, 0.1);
-    border-color: rgba(90, 140, 120, 0.2);
+    background: rgba(90, 140, 120, 0.15);
+    border-color: rgba(90, 140, 120, 0.3);
 }
 
 :global(.valentinePage.darkTheme) .submitButton {
-    box-shadow: 0 4px 16px rgba(212, 168, 168, 0.5);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
-/* ===== АДАПТАЦИЯ ПОД МОБИЛЬНЫЕ ===== */
-@media (max-width: 768px) {
+@media (orientation: landscape) and (max-height: 600px) {
     .modal {
-        padding: 32px 24px;
+        max-height: 95vh;
+        padding: 16px 24px;
     }
 
-    .header h2 {
-        font-size: 1.6rem;
+    .header {
+        margin-bottom: 12px;
     }
 
-    .closeButton {
-        width: 32px;
-        height: 32px;
-        font-size: 1.3rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .modal {
-        padding: 28px 20px;
-    }
-
-    .header h2 {
-        font-size: 1.4rem;
-    }
-
-    .input {
-        padding: 12px 14px;
+    .form {
+        gap: 10px;
     }
 
     .submitButton {
-        padding: 14px 20px;
+        margin-top: 0;
     }
 }
 
-@media (max-width: 360px) {
-    .modal {
-        padding: 24px 16px;
-    }
-
-    .header h2 {
-        font-size: 1.3rem;
-    }
-
-    .closeButton {
-        width: 28px;
-        height: 28px;
-        font-size: 1.2rem;
-    }
-
-    .label {
-        font-size: 0.75rem;
-    }
-
-    .input {
-        padding: 10px 12px;
-        font-size: 0.95rem;
-    }
-
-    .submitButton {
-        padding: 12px 16px;
-        font-size: 0.95rem;
-    }
-}
-
-/* ===== УЧЁТ ПРЕДПОЧТЕНИЙ ПО УМЕНЬШЕНИЮ ДВИЖЕНИЯ ===== */
-@media (prefers-reduced-motion: reduce) {
-
-    .overlay,
-    .modal {
-        animation: none;
-    }
-
-    .closeButton:hover {
-        transform: none;
-    }
-
-    .submitButton:hover:not(:disabled) {
-        transform: none;
-    }
-}
-
-/* ===== УЧЁТ ТАЧ-УСТРОЙСТВ ===== */
 @media (hover: none) and (pointer: coarse) {
-    .closeButton:hover {
-        background: transparent;
-        border-color: rgba(240, 230, 230, 0.6);
-        color: var(--color-secondary);
-        transform: none;
-    }
-
-    .submitButton:hover:not(:disabled) {
+    .closeButton:active {
         background: var(--color-accent);
-        transform: none;
+        border-color: var(--color-accent);
+        color: white;
     }
 
     .submitButton:active:not(:disabled) {
         background: #b28b8b;
-        transform: translateY(-1px);
+        transform: translateY(1px);
     }
 }
 
-/* ===== АНИМАЦИИ ===== */
+@supports (padding: max(0px)) {
+    .modal {
+        padding-left: max(clamp(16px, 4vw, 40px), env(safe-area-inset-left));
+        padding-right: max(clamp(16px, 4vw, 40px), env(safe-area-inset-right));
+        padding-top: max(clamp(24px, 5vh, 48px), env(safe-area-inset-top));
+        padding-bottom: max(clamp(24px, 5vh, 48px), env(safe-area-inset-bottom));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .overlay,
+    .modal,
+    .closeButton,
+    .submitButton {
+        animation: none;
+        transition: none !important;
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+    .modal {
+        border-width: 0.5px;
+    }
+}
+
 @keyframes modalFadeIn {
     from {
         opacity: 0;
@@ -378,4 +341,16 @@
         opacity: 1;
         transform: scale(1);
     }
+}
+
+.modal,
+.closeButton,
+.submitButton {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+.overlay,
+.modal {
+    content-visibility: auto;
 }

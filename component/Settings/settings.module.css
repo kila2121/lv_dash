@@ -1,0 +1,743 @@
+:root {
+    --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --shadow-sm: 0 4px 16px rgba(139, 128, 126, 0.08);
+    --shadow-md: 0 8px 30px rgba(139, 128, 126, 0.12);
+    --shadow-lg: 0 20px 40px rgba(139, 128, 126, 0.15);
+    --shadow-accent: 0 4px 16px rgba(212, 168, 168, 0.3);
+    --shadow-accent-hover: 0 8px 24px rgba(212, 168, 168, 0.4);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(8px) saturate(180%);
+    -webkit-backdrop-filter: blur(8px) saturate(180%);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s var(--transition-smooth),
+        visibility 0.4s var(--transition-smooth),
+        backdrop-filter 0.4s var(--transition-smooth);
+    will-change: opacity, backdrop-filter;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.settingsPanel {
+    position: fixed;
+    top: 0;
+    right: -420px;
+    width: 380px;
+    height: 100vh;
+    background: var(--color-bg-light);
+    border-left: 1px solid rgba(240, 230, 230, 0.8);
+    box-shadow: -4px 0 40px rgba(139, 128, 126, 0.12);
+    z-index: 1001;
+    transition: right 0.5s var(--transition-bounce);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Playfair Display', 'Georgia', serif;
+    will-change: right, transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+.settingsPanel.open {
+    right: 0;
+}
+
+.settingsPanel::-webkit-scrollbar {
+    width: 6px;
+}
+
+.settingsPanel::-webkit-scrollbar-track {
+    background: rgba(240, 230, 230, 0.4);
+    border-radius: 3px;
+}
+
+.settingsPanel::-webkit-scrollbar-thumb {
+    background: var(--color-accent);
+    opacity: 0.5;
+    border-radius: 3px;
+    transition: background 0.2s ease;
+}
+
+.settingsPanel::-webkit-scrollbar-thumb:hover {
+    background: #b28b8b;
+}
+
+.settingsPanel::-webkit-scrollbar-thumb:active {
+    background: #a07d7d;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 28px;
+    border-bottom: 1px solid rgba(240, 230, 230, 0.8);
+    position: relative;
+    background: var(--color-bg-light);
+    cursor: grab;
+    user-select: none;
+    transition: background 0.3s ease, padding 0.3s ease;
+}
+
+.header:active {
+    cursor: grabbing;
+}
+
+.header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--color-accent),
+            transparent);
+    transition: transform 0.4s var(--transition-smooth);
+    opacity: 0.7;
+}
+
+.header:hover::after {
+    transform: translateX(-50%) scaleX(1.2);
+}
+
+.header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--color-primary);
+    margin: 0;
+    letter-spacing: 1px;
+    position: relative;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.header:hover h2 {
+    color: var(--color-accent);
+    transform: translateX(4px);
+}
+
+.closeButton {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid rgba(240, 230, 230, 0.6);
+    color: var(--color-secondary);
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s var(--transition-bounce);
+    padding: 0;
+    line-height: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.closeButton::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--color-accent);
+    border-radius: 50%;
+    transform: scale(0);
+    transition: transform 0.3s var(--transition-smooth);
+    z-index: -1;
+}
+
+.closeButton:hover {
+    border-color: var(--color-accent);
+    color: white;
+    transform: rotate(90deg) scale(1.1);
+}
+
+.closeButton:hover::before {
+    transform: scale(1);
+}
+
+.closeButton:active {
+    transform: rotate(90deg) scale(0.95);
+}
+
+.form {
+    padding: 32px 28px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.form::before {
+    content: '❦';
+    text-align: center;
+    color: var(--color-accent);
+    opacity: 0.4;
+    font-size: 1.2rem;
+    margin: 10px 0;
+    animation: floatDecoration 3s infinite ease-in-out;
+    display: block;
+}
+
+@keyframes floatDecoration {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.4;
+    }
+
+    50% {
+        transform: translateY(-3px) rotate(5deg);
+        opacity: 0.6;
+    }
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+.formGroup:hover {
+    transform: translateX(4px);
+}
+
+.formGroup label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-secondary);
+    font-weight: 300;
+    font-family: 'Playfair Display', serif;
+    transition: color 0.3s ease, letter-spacing 0.3s ease;
+}
+
+.formGroup:hover label {
+    color: var(--color-accent);
+    letter-spacing: 3px;
+}
+
+.formGroup::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, var(--color-accent), transparent);
+    transition: width 0.3s var(--transition-smooth);
+}
+
+.formGroup:focus-within::after {
+    width: 100%;
+}
+
+.input {
+    padding: 16px 18px;
+    background: var(--color-bg);
+    border: 1px solid rgba(240, 230, 230, 0.8);
+    border-radius: 3px;
+    font-size: 1rem;
+    color: var(--color-text-light);
+    transition: all 0.3s var(--transition-smooth);
+    font-family: 'Georgia', serif;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    transform: translateZ(0);
+}
+
+.input:hover {
+    border-color: rgba(212, 168, 168, 0.5);
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 4px rgba(212, 168, 168, 0.15);
+    background: white;
+    transform: translateY(-2px);
+}
+
+.input.error {
+    border-color: #e0a0a0;
+    animation: shake 0.4s var(--transition-smooth);
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-5px);
+    }
+
+    40% {
+        transform: translateX(5px);
+    }
+
+    60% {
+        transform: translateX(-3px);
+    }
+
+    80% {
+        transform: translateX(3px);
+    }
+}
+
+.input[type="date"] {
+    position: relative;
+    cursor: pointer;
+}
+
+.input[type="date"]::-webkit-calendar-picker-indicator {
+    background: transparent;
+    color: var(--color-accent);
+    cursor: pointer;
+    opacity: 0.6;
+    filter: invert(0.8);
+    transition: all 0.3s ease;
+    padding: 8px;
+    border-radius: 50%;
+}
+
+.input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+    transform: scale(1.2) rotate(15deg);
+    background: rgba(212, 168, 168, 0.1);
+}
+
+.errorMessage {
+    background: rgba(224, 160, 160, 0.1);
+    border: 1px solid rgba(224, 160, 160, 0.3);
+    padding: 14px 18px;
+    border-radius: 3px;
+    color: #c45a5a;
+    font-size: 0.9rem;
+    text-align: center;
+    margin: 4px 0;
+    font-style: italic;
+    animation: slideDown 0.3s var(--transition-smooth);
+    backdrop-filter: blur(4px);
+    transform-origin: top;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px) scaleY(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scaleY(1);
+    }
+}
+
+.submitButton {
+    background: var(--color-accent);
+    color: white;
+    border: none;
+    padding: 18px 24px;
+    border-radius: 3px;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 400;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    margin: 8px 0 4px;
+    box-shadow: var(--shadow-accent);
+    width: 100%;
+    font-family: 'Playfair Display', serif;
+}
+
+.submitButton:hover:not(:disabled) {
+    background: #b28b8b;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-accent-hover);
+}
+
+.submitButton:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.submitButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.form button[type="button"]:not(.closeButton):not(.adminButton) {
+    background: transparent;
+    border: 1px solid rgba(240, 230, 230, 0.8);
+    padding: 16px 20px;
+    border-radius: 3px;
+    font-size: 0.95rem;
+    color: var(--color-secondary);
+    cursor: pointer;
+    transition: all 0.3s var(--transition-smooth);
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 1px;
+    width: 100%;
+    margin: 4px 0;
+    position: relative;
+    overflow: hidden;
+    transform: translateZ(0);
+}
+
+.form button[type="button"]:not(.closeButton):not(.adminButton)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(212, 168, 168, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.form button[type="button"]:not(.closeButton):not(.adminButton):hover {
+    background: rgba(240, 230, 230, 0.4);
+    border-color: #b28b8b;
+    color: #b28b8b;
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: var(--shadow-sm);
+}
+
+.form button[type="button"]:not(.closeButton):not(.adminButton):hover::before {
+    left: 100%;
+}
+
+.adminButton {
+    background: transparent;
+    border: 1px solid rgba(224, 160, 160, 0.4);
+    padding: 18px 24px;
+    border-radius: 3px;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: #c45a5a;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, border-color 0.3s ease;
+    font-family: 'Playfair Display', serif;
+    width: 100%;
+    margin: 8px 0 4px;
+    box-shadow: var(--shadow-accent);
+}
+
+.adminButton:hover {
+    background: #b28b8b;
+    border-color: #b28b8b;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-accent-hover);
+}
+
+.adminButton:active {
+    transform: translateY(0);
+}
+
+:global(.darkTheme) .overlay {
+    background-color: rgba(20, 18, 17, 0.85);
+    backdrop-filter: blur(8px) saturate(180%) brightness(0.8);
+}
+
+:global(.darkTheme) .settingsPanel {
+    background: var(--color-bg-light);
+    border-left-color: rgba(96, 90, 90, 0.8);
+    box-shadow: -4px 0 40px rgba(0, 0, 0, 0.4);
+}
+
+:global(.darkTheme) .header {
+    background: var(--color-bg-light);
+    border-bottom-color: rgba(96, 90, 90, 0.8);
+}
+
+:global(.darkTheme) .header h2 {
+    color: var(--color-text-light);
+}
+
+:global(.darkTheme) .header:hover h2 {
+    color: var(--color-accent);
+    text-shadow: 0 0 10px rgba(212, 168, 168, 0.3);
+}
+
+:global(.darkTheme) .closeButton {
+    border-color: rgba(96, 90, 90, 0.8);
+    color: var(--color-text-light);
+}
+
+:global(.darkTheme) .formGroup label {
+    color: var(--color-text-light);
+    opacity: 0.9;
+}
+
+:global(.darkTheme) .input {
+    background: rgba(30, 28, 27, 0.8);
+    border-color: rgba(96, 90, 90, 0.8);
+    color: var(--color-text-light);
+}
+
+:global(.darkTheme) .input:hover {
+    background: rgba(40, 38, 37, 0.9);
+    border-color: rgba(212, 168, 168, 0.5);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+:global(.darkTheme) .input:focus {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 4px rgba(212, 168, 168, 0.2);
+    background: rgba(50, 48, 47, 0.95);
+}
+
+:global(.darkTheme) .input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1) brightness(0.8);
+}
+
+:global(.darkTheme) .errorMessage {
+    background: rgba(196, 90, 90, 0.15);
+    border-color: rgba(196, 90, 90, 0.3);
+    color: #e0a0a0;
+}
+
+:global(.darkTheme) .submitButton {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+:global(.darkTheme) .form button[type="button"]:not(.closeButton):not(.adminButton) {
+    border-color: rgba(96, 90, 90, 0.8);
+    color: var(--color-text-light);
+}
+
+:global(.darkTheme) .form button[type="button"]:not(.closeButton):not(.adminButton):hover {
+    background: rgba(96, 90, 90, 0.3);
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+:global(.darkTheme) .adminButton {
+    border-color: rgba(224, 160, 160, 0.3);
+    color: #e0a0a0;
+}
+
+:global(.darkTheme) .adminButton:hover {
+    background: rgba(224, 160, 160, 0.15);
+    border-color: #e0a0a0;
+    box-shadow: 0 4px 20px rgba(196, 90, 90, 0.2);
+}
+
+:global(.darkTheme) .settingsPanel::-webkit-scrollbar-track {
+    background: rgba(60, 55, 54, 0.8);
+}
+
+@container (max-width: 768px) {
+    .settingsPanel {
+        width: 320px;
+        right: -340px;
+    }
+}
+
+@media (max-width: 768px) {
+    .settingsPanel {
+        width: 320px;
+        right: -340px;
+    }
+
+    .header {
+        padding: 24px 22px;
+    }
+
+    .header h2 {
+        font-size: 1.6rem;
+    }
+
+    .form {
+        padding: 28px 22px;
+        gap: 24px;
+    }
+
+    .input {
+        padding: 14px 16px;
+    }
+
+    .submitButton,
+    .form button[type="button"]:not(.closeButton):not(.adminButton),
+    .adminButton {
+        padding: 16px 18px;
+    }
+}
+
+@media (max-width: 768px) and (hover: none) {
+
+    .header:hover::after,
+    .formGroup:hover,
+    .submitButton:hover:not(:disabled),
+    .form button[type="button"]:not(.closeButton):not(.adminButton):hover,
+    .adminButton:hover {
+        transform: none;
+    }
+
+    .input:hover {
+        transform: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .settingsPanel {
+        width: 100%;
+        right: -100%;
+        border-left: none;
+    }
+
+    .header {
+        padding: 20px 18px;
+    }
+
+    .header h2 {
+        font-size: 1.5rem;
+    }
+
+    .form {
+        padding: 24px 18px;
+        gap: 22px;
+    }
+
+    .formGroup label {
+        font-size: 0.8rem;
+    }
+
+    .input {
+        padding: 14px;
+        font-size: 0.95rem;
+    }
+
+    .submitButton,
+    .form button[type="button"]:not(.closeButton):not(.adminButton),
+    .adminButton {
+        padding: 16px;
+        font-size: 0.9rem;
+    }
+
+    .closeButton {
+        width: 36px;
+        height: 36px;
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .header {
+        padding: 18px 14px;
+    }
+
+    .header h2 {
+        font-size: 1.4rem;
+    }
+
+    .form {
+        padding: 20px 14px;
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+
+    .header::after,
+    .formGroup::after {
+        height: 1px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .overlay,
+    .settingsPanel,
+    .closeButton,
+    .submitButton,
+    .form button,
+    .input,
+    .formGroup,
+    .header,
+    .header::after,
+    .form::before,
+    .adminButton::before {
+        transition: none !important;
+        animation: none !important;
+        transform: none !important;
+    }
+
+    .input:hover,
+    .submitButton:hover,
+    .form button:hover,
+    .adminButton:hover {
+        transform: none !important;
+    }
+
+    .closeButton:hover {
+        transform: scale(1) !important;
+    }
+
+    .errorMessage {
+        animation: none !important;
+    }
+}
+
+@media (prefers-reduced-data: reduce) {
+    .settingsPanel {
+        box-shadow: none;
+        border-right: 1px solid rgba(240, 230, 230, 0.8);
+    }
+}
+
+.settingsPanel,
+.closeButton,
+.submitButton,
+.input {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+.overlay,
+.settingsPanel {
+    will-change: opacity, right, backdrop-filter;
+    content-visibility: auto;
+}
+
+@supports not (backdrop-filter: blur(8px)) {
+    .overlay {
+        background-color: rgba(255, 255, 255, 0.95);
+    }
+
+    :global(.darkTheme) .overlay {
+        background-color: rgba(20, 18, 17, 0.95);
+    }
+}

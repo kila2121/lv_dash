@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { createContext, useContext, useEffect, useState } from 'react';
+import { SettingUser } from "../../component/Settings/settings"
 
 interface User {
   login: string;
@@ -11,6 +12,8 @@ interface AuthContextType {
   setUser: (user: User | null) => void;
   logout: () => void;
   isLoading: boolean;
+  userSetting: SettingUser | null;
+  setUserSetting: (setting: SettingUser | null) => void;
 }
 
 
@@ -27,7 +30,7 @@ export const useAuth = () => {
 function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUserState] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-
+  const [userSetting, setUserSettingState] = useState<SettingUser | null>(null);
 
   const setUser = (newUser: User | null) => {
       setUserState(newUser);
@@ -38,8 +41,19 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
       }
     };
 
+    const setUserSetting = (newSetting: SettingUser | null) => {
+      setUserSettingState(newSetting);
+      if (newSetting) {
+        localStorage.setItem('setting', JSON.stringify(newSetting));
+      } else {
+        localStorage.removeItem('setting');
+      }
+    };
+
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
+    const storedSetting = localStorage.getItem('setting');
+
     if (storedUser) {
       try {
         setTimeout(()=>{
@@ -51,6 +65,20 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
           localStorage.removeItem('user');
       }
     }
+    if (storedSetting) {
+        try {
+          const parsedSetting = JSON.parse(storedSetting);
+          if (parsedSetting) {
+            setTimeout(()=>{
+              setUserSettingState(parsedSetting);
+            },100)
+          }
+        } catch (error) {
+          console.error('Ошибка при чтении настроек из localStorage:', error);
+          localStorage.removeItem('setting');
+        }
+      }
+
     setTimeout(()=>{
       setIsLoading(false);
     })
@@ -65,7 +93,9 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
     user,
     setUser,
     logout,
-    isLoading
+    isLoading,
+    userSetting,
+    setUserSetting
   };
 
   return (

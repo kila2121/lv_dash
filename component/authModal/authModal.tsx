@@ -83,10 +83,6 @@ export const AuthModal = ({ isOpen, onClose, className, ...props }: AuthModalPro
                 placeholder="Введите логин"
                 {...register('login', {
                   required: 'Введите логин',
-                  minLength: {
-                    value: 3,
-                    message: 'Минимум 3 символа'
-                  }
                 })}
               />
               {errors.login && (
@@ -105,10 +101,6 @@ export const AuthModal = ({ isOpen, onClose, className, ...props }: AuthModalPro
                 placeholder="Введите пароль"
                 {...register('password', {
                   required: 'Введите пароль',
-                  minLength: {
-                    value: 3,
-                    message: 'Минимум 3 символа'
-                  }
                 })}
               />
               {errors.password && (
