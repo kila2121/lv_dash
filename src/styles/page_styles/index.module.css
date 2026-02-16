@@ -142,7 +142,7 @@
 
 .title {
     font-size: 3.2rem;
-    color: var(--color-primary);
+    color: #8b807e;
     margin-bottom: 20px;
     font-weight: 300;
     letter-spacing: 1.2px;
@@ -162,13 +162,13 @@
     height: 2px;
     background: linear-gradient(90deg,
             transparent,
-            var(--color-accent),
+            #d4a8a8,
             transparent);
 }
 
 .subtitle {
     font-size: 1.3rem;
-    color: var(--color-secondary);
+    color: #a89b99;
     font-style: italic;
     letter-spacing: 3px;
     font-weight: 300;
@@ -211,7 +211,7 @@
 
 .dateNumber {
     font-size: 2.8rem;
-    color: var(--color-accent);
+    color: #d4a8a8;
     font-weight: 200;
     position: relative;
     z-index: 2;
@@ -219,7 +219,7 @@
 
 .dateLabel {
     font-size: 0.9rem;
-    color: var(--color-primary);
+    color: #8b807e;
     text-transform: lowercase;
     letter-spacing: 2px;
     margin-top: 5px;
@@ -230,7 +230,7 @@
 
 .dateStampText {
     font-size: 1rem;
-    color: var(--color-secondary);
+    color: #a89b99;
     max-width: 280px;
     margin: 0 auto;
     line-height: 1.6;
@@ -290,13 +290,13 @@
 }
 
 .mainHeart:hover .heartFill {
-    color: var(--color-accent);
+    color: #d4a8a8;
     transform: scale(1.1);
     text-shadow: 0 8px 24px rgba(212, 168, 168, 0.4);
 }
 
 .mainHeart.heartWarm .heartFill {
-    color: var(--color-accent);
+    color: #d4a8a8;
     animation: heartbeat 1.6s infinite;
 }
 
@@ -315,7 +315,7 @@
 
 .instructionText {
     font-size: 1.2rem;
-    color: var(--color-primary);
+    color: #8b807e;
     margin-bottom: 20px;
     font-style: italic;
     font-weight: 300;
@@ -338,21 +338,21 @@
 
 .counterLabel {
     font-size: 0.95rem;
-    color: var(--color-secondary);
+    color: #a89b99;
     letter-spacing: 1px;
     font-weight: 300;
 }
 
 .counterValue {
     font-size: 1.8rem;
-    color: var(--color-accent);
+    color: #d4a8a8;
     font-weight: 200;
     min-width: 30px;
     text-align: center;
 }
 
 .letter {
-    background: var(--color-bg-light);
+    background: #fefcfb;
     border: 1px solid rgba(240, 230, 230, 0.8);
     border-radius: 3px;
     padding: 50px 45px;
@@ -373,7 +373,7 @@
     height: 1px;
     background: linear-gradient(90deg,
             transparent,
-            var(--color-accent),
+            #d4a8a8,
             transparent);
     opacity: 0.3;
 }
@@ -391,7 +391,7 @@
     padding-bottom: 25px;
     border-bottom: 1px solid rgba(240, 230, 230, 0.8);
     font-size: 0.95rem;
-    color: var(--color-secondary);
+    color: #a89b99;
     letter-spacing: 1px;
 }
 
@@ -401,7 +401,7 @@
 
 .letterParagraph {
     margin-bottom: 30px;
-    color: var(--color-text-light);
+    color: #5a4d4a;
     font-size: 1.1rem;
     text-align: justify;
     hyphens: auto;
@@ -414,14 +414,14 @@
     position: absolute;
     left: -5px;
     top: 0;
-    color: var(--color-accent);
+    color: #d4a8a8;
     opacity: 0.3;
     font-size: 0.8rem;
 }
 
 .letterParagraph:first-child {
     font-size: 1.3rem;
-    color: var(--color-primary);
+    color: #8b807e;
     font-style: italic;
     padding-left: 0;
 }
@@ -448,19 +448,19 @@
     height: 1px;
     background: linear-gradient(90deg,
             transparent,
-            var(--color-accent),
+            #d4a8a8,
             transparent);
 }
 
 .letterSignature p {
     margin: 8px 0;
-    color: var(--color-primary);
+    color: #8b807e;
     letter-spacing: 1px;
 }
 
 .signatureName {
     font-size: 1.8rem;
-    color: var(--color-accent);
+    color: #d4a8a8;
     font-family: 'Dancing Script', cursive;
     font-weight: 400;
     letter-spacing: 2px;
@@ -472,7 +472,7 @@
     right: -30px;
     width: 90px;
     height: 90px;
-    background: var(--color-bg-light);
+    background: #fefcfb;
     border: 2px solid rgba(240, 230, 230, 0.8);
     border-radius: 50%;
     display: flex;
@@ -504,7 +504,7 @@
 
 .sealText {
     font-size: 0.85rem;
-    color: var(--color-accent);
+    color: #d4a8a8;
     letter-spacing: 2px;
     transform: rotate(-15deg);
     font-weight: 300;
@@ -517,7 +517,7 @@
 
 .sectionTitle {
     text-align: center;
-    color: var(--color-primary);
+    color: #8b807e;
     margin-bottom: 60px;
     font-size: 1.4rem;
     font-weight: 300;
@@ -537,7 +537,7 @@
     height: 1px;
     background: linear-gradient(90deg,
             transparent,
-            var(--color-accent),
+            #d4a8a8,
             transparent);
 }
 
@@ -550,7 +550,7 @@
 
 .promiseCard {
     padding: 30px 25px;
-    background: var(--color-bg-light);
+    background: #fefcfb;
     border: 1px solid rgba(240, 230, 230, 0.8);
     border-radius: 3px;
     text-align: center;
@@ -571,7 +571,7 @@
     height: 1px;
     background: linear-gradient(90deg,
             transparent,
-            var(--color-accent),
+            #d4a8a8,
             transparent);
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -590,7 +590,7 @@
 
 .promiseNumber {
     font-size: 2.2rem;
-    color: var(--color-light);
+    color: #f0e6e6;
     margin-bottom: 20px;
     font-weight: 200;
     position: relative;
@@ -606,12 +606,12 @@
     transform: translateX(-50%);
     width: 30px;
     height: 1px;
-    background: var(--color-light);
+    background: #f0e6e6;
     opacity: 0.5;
 }
 
 .promiseText {
-    color: var(--color-text-light);
+    color: #5a4d4a;
     line-height: 1.7;
     margin-bottom: 20px;
     min-height: 70px;
@@ -622,7 +622,7 @@
 .promiseUnderline {
     width: 40px;
     height: 1px;
-    background: var(--color-light);
+    background: #f0e6e6;
     margin: 0 auto;
     opacity: 0.6;
 }
@@ -636,7 +636,7 @@
     position: relative;
     max-width: 400px;
     margin: 0 auto;
-    background: var(--color-bg-light);
+    background: #fefcfb;
     border: 1px solid rgba(240, 230, 230, 0.8);
     padding: 45px 35px;
     border-radius: 3px;
@@ -655,7 +655,7 @@
     height: 1px;
     background: linear-gradient(90deg,
             transparent,
-            var(--color-accent),
+            #d4a8a8,
             transparent);
 }
 
@@ -666,7 +666,7 @@
     transform: translateX(-50%);
     width: 120px;
     height: 45px;
-    background: var(--color-bg-light);
+    background: #fefcfb;
     border: 1px solid rgba(240, 230, 230, 0.8);
     border-bottom: none;
     clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
@@ -680,7 +680,7 @@
 }
 
 .secretTitle {
-    color: var(--color-primary);
+    color: #8b807e;
     margin-bottom: 25px;
     font-weight: 300;
     font-size: 1.3rem;
@@ -697,12 +697,12 @@
     transform: translateX(-50%);
     width: 50px;
     height: 1px;
-    background: var(--color-accent);
+    background: #d4a8a8;
     opacity: 0.7;
 }
 
 .secretText {
-    color: var(--color-text-light);
+    color: #5a4d4a;
     line-height: 1.8;
     margin-bottom: 30px;
     font-size: 1.05rem;
@@ -721,7 +721,7 @@
 .wishSection {
     margin: 70px 0;
     padding: 45px 40px;
-    background: var(--color-bg-light);
+    background: #fefcfb;
     border: 1px solid rgba(240, 230, 230, 0.8);
     border-radius: 3px;
     text-align: center;
@@ -741,12 +741,12 @@
     height: 1px;
     background: linear-gradient(90deg,
             transparent,
-            var(--color-accent),
+            #d4a8a8,
             transparent);
 }
 
 .wishText {
-    color: var(--color-text-light);
+    color: #5a4d4a;
     line-height: 1.9;
     font-size: 1.1rem;
     margin-bottom: 35px;
@@ -763,21 +763,20 @@
     align-items: center;
     justify-content: center;
     gap: 18px;
-    color: var(--color-primary);
+    color: #8b807e;
     font-size: 1.2rem;
     letter-spacing: 3px;
     font-weight: 300;
 }
 
 .wishHeart {
-    color: var(--color-accent);
+    color: #d4a8a8;
     font-size: 1.8rem;
     animation: beat 1.8s infinite ease-in-out;
     position: relative;
     top: 2px;
 }
 
-/* ===== КНОПКИ УПРАВЛЕНИЯ ===== */
 .topControls {
     position: absolute;
     top: 20px;
@@ -794,7 +793,7 @@
     border-radius: 12px;
     padding: 8px 16px;
     font-size: 0.95rem;
-    color: var(--color-primary);
+    color: #8b807e;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 2px 8px rgba(139, 128, 126, 0.1);
@@ -808,31 +807,77 @@
 
 .themeToggle:hover,
 .adminButton:hover {
-    border-color: var(--color-accent);
+    border-color: #d4a8a8;
     background: rgba(255, 255, 255, 0.95);
     box-shadow: 0 4px 12px rgba(212, 168, 168, 0.2);
     transform: translateY(-1px);
 }
 
-/* Текст внутри кнопки админа — обычный, без абсолютного позиционирования */
-.adminButton .adminText {
-    position: static;
-    opacity: 1;
-    background: transparent;
-    border: none;
-    padding: 0;
-    box-shadow: none;
-    color: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    white-space: nowrap;
+/* ===== СЧЕТЧИК ДНЕЙ ===== */
+.meetingCounter {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 10px 22px;
+    background: rgba(212, 168, 168, 0.1);
+    border: 1px solid rgba(212, 168, 168, 0.25);
+    border-radius: 40px;
+    font-family: 'Playfair Display', serif;
+    transition: all 0.2s ease;
+}
+
+.meetingText {
+    font-size: 1rem;
+    color: #d4a8a8;
+    font-weight: 400;
+}
+
+.meetingNumber {
+    font-weight: 500;
+    margin: 0 2px;
+    color: #d4a8a8;
+}
+
+.meetingUnit {
+    font-size: 0.9rem;
+    color: #a89b99;
+    margin-left: 2px;
+}
+
+/* Адаптация */
+@media (max-width: 768px) {
+    .meetingCounter {
+        padding: 8px 18px;
+    }
+
+    .meetingText {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .meetingCounter {
+        padding: 6px 14px;
+        margin-top: 12px;
+    }
+
+    .meetingText {
+        font-size: 0.9rem;
+    }
+
+    .meetingNumber {
+        font-size: 1rem;
+    }
+
+    .meetingUnit {
+        font-size: 0.8rem;
+    }
 }
 
 /* ===== ТЁМНАЯ ТЕМА ===== */
 .valentinePage.darkTheme {
     background: linear-gradient(135deg,
-            var(--color-bg) 0%,
-            var(--color-bg-light) 100%);
+            #1a1514 0%,
+            #221d1c 100%);
 }
 
 .valentinePage.darkTheme .backgroundElements {
@@ -871,6 +916,7 @@
 .valentinePage.darkTheme .promiseCard,
 .valentinePage.darkTheme .secretEnvelope,
 .valentinePage.darkTheme .wishSection {
+    background: #221d1c;
     border: 1px solid rgba(96, 90, 90, 0.8);
     box-shadow:
         0 4px 30px rgba(0, 0, 0, 0.2),
@@ -880,17 +926,22 @@
 .valentinePage.darkTheme .letter::before {
     background: linear-gradient(90deg,
             transparent,
-            var(--color-accent),
+            #d4a8a8,
             transparent);
     opacity: 0.5;
 }
 
 .valentinePage.darkTheme .letterHeader {
     border-bottom: 1px solid rgba(96, 90, 90, 0.8);
+    color: #c7bebc;
+}
+
+.valentinePage.darkTheme .letterParagraph {
+    color: #c7bebc;
 }
 
 .valentinePage.darkTheme .letterParagraph::before {
-    color: var(--color-accent);
+    color: #d4a8a8;
     opacity: 0.5;
 }
 
@@ -901,12 +952,16 @@
 .valentinePage.darkTheme .letterSignature::before {
     background: linear-gradient(90deg,
             transparent,
-            var(--color-accent),
+            #d4a8a8,
             transparent);
 }
 
+.valentinePage.darkTheme .letterSignature p {
+    color: #c7bebc;
+}
+
 .valentinePage.darkTheme .letterSeal {
-    background: var(--color-bg-light);
+    background: #221d1c;
     border: 2px solid rgba(96, 90, 90, 0.8);
     box-shadow:
         0 6px 25px rgba(0, 0, 0, 0.2),
@@ -924,33 +979,79 @@
 .valentinePage.darkTheme .promiseCard::before {
     background: linear-gradient(90deg,
             transparent,
-            var(--color-accent),
+            #d4a8a8,
             transparent);
+}
+
+.valentinePage.darkTheme .promiseNumber {
+    color: #3a3332;
+}
+
+.valentinePage.darkTheme .promiseNumber::after {
+    background: #3a3332;
+}
+
+.valentinePage.darkTheme .promiseText {
+    color: #c7bebc;
+}
+
+.valentinePage.darkTheme .promiseUnderline {
+    background: #3a3332;
+}
+
+.valentinePage.darkTheme .secretEnvelope {
+    background: #221d1c;
+    border-color: rgba(96, 90, 90, 0.8);
 }
 
 .valentinePage.darkTheme .secretEnvelope::before {
     background: linear-gradient(90deg,
             transparent,
-            var(--color-accent),
+            #d4a8a8,
             transparent);
 }
 
 .valentinePage.darkTheme .envelopeFlap {
-    background: var(--color-bg-light);
+    background: #221d1c;
     border: 1px solid rgba(96, 90, 90, 0.8);
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
 }
 
+.valentinePage.darkTheme .secretTitle {
+    color: #c7bebc;
+}
+
 .valentinePage.darkTheme .secretTitle::after {
-    background: var(--color-accent);
+    background: #d4a8a8;
     opacity: 0.8;
+}
+
+.valentinePage.darkTheme .secretText {
+    color: #c7bebc;
+}
+
+.valentinePage.darkTheme .wishSection {
+    background: #221d1c;
 }
 
 .valentinePage.darkTheme .wishSection::before {
     background: linear-gradient(90deg,
             transparent,
-            var(--color-accent),
+            #d4a8a8,
             transparent);
+}
+
+.valentinePage.darkTheme .wishText {
+    color: #c7bebc;
+}
+
+.valentinePage.darkTheme .wishDecoration {
+    color: #c7bebc;
+}
+
+.valentinePage.darkTheme .wishHeart {
+    color: #d4a8a8;
+    filter: drop-shadow(0 2px 4px rgba(212, 168, 168, 0.5));
 }
 
 .valentinePage.darkTheme .heartOutline {
@@ -975,56 +1076,39 @@
     filter: drop-shadow(0 4px 8px rgba(212, 168, 168, 0.5));
 }
 
-.valentinePage.darkTheme .wishHeart {
-    color: var(--color-accent);
-    filter: drop-shadow(0 2px 4px rgba(212, 168, 168, 0.5));
-}
-
-/* Стили кнопок в тёмной теме */
 .valentinePage.darkTheme .topControls .themeToggle,
 .valentinePage.darkTheme .topControls .adminButton {
     background: rgba(40, 35, 34, 0.9);
     border-color: rgba(96, 90, 90, 0.8);
-    color: var(--color-text-light);
+    color: #c7bebc;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .valentinePage.darkTheme .topControls .themeToggle:hover,
 .valentinePage.darkTheme .topControls .adminButton:hover {
     background: rgba(50, 45, 44, 0.95);
-    border-color: var(--color-accent);
+    border-color: #d4a8a8;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-.valentinePage.darkTheme .adminButton .adminText {
-    color: inherit;
-}
-
-/* Цвета текста в тёмной теме */
 .valentinePage.darkTheme .title,
 .valentinePage.darkTheme .subtitle,
 .valentinePage.darkTheme .dateLabel,
 .valentinePage.darkTheme .dateStampText,
 .valentinePage.darkTheme .instructionText,
 .valentinePage.darkTheme .counterLabel,
+.valentinePage.darkTheme .counterValue,
 .valentinePage.darkTheme .letterDate,
 .valentinePage.darkTheme .letterAddress,
-.valentinePage.darkTheme .letterParagraph,
-.valentinePage.darkTheme .letterSignature p,
-.valentinePage.darkTheme .sectionTitle,
-.valentinePage.darkTheme .promiseText,
-.valentinePage.darkTheme .secretTitle,
-.valentinePage.darkTheme .secretText,
-.valentinePage.darkTheme .wishText,
-.valentinePage.darkTheme .wishDecoration {
-    color: var(--color-text-light);
+.valentinePage.darkTheme .sectionTitle {
+    color: #c7bebc;
 }
 
 .valentinePage.darkTheme .title::after,
 .valentinePage.darkTheme .sectionTitle::after {
     background: linear-gradient(90deg,
             transparent,
-            var(--color-accent),
+            #d4a8a8,
             transparent);
 }
 
@@ -1035,219 +1119,47 @@
             transparent);
 }
 
-/* ===== МОДАЛЬНОЕ ОКНО АВТОРИЗАЦИИ ===== */
-.authModal .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(8px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    opacity: 0;
-    animation: modalFadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+.valentinePage.darkTheme .dateNumber {
+    color: #d4a8a8;
 }
 
-.authModal .modal {
-    background: var(--color-bg-light);
-    border-radius: 3px;
-    padding: 48px 40px;
-    max-width: 420px;
-    width: 90%;
-    border: 1px solid rgba(240, 230, 230, 0.8);
-    box-shadow: 0 20px 40px rgba(139, 128, 126, 0.12);
-    position: relative;
-    transform: scale(0.95);
-    animation: modalZoomIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+.valentinePage.darkTheme .dateLabel {
+    color: #c7bebc;
 }
 
-.authModal .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 32px;
+.valentinePage.darkTheme .dateStampText {
+    color: #c7bebc;
 }
 
-.authModal .header h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    font-weight: 300;
-    color: var(--color-primary);
-    margin: 0;
-    letter-spacing: 1px;
+.valentinePage.darkTheme .instructionText {
+    color: #c7bebc;
 }
 
-.authModal .closeButton {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: transparent;
-    border: 1px solid rgba(240, 230, 230, 0.6);
-    color: var(--color-secondary);
-    font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    padding: 0;
+.valentinePage.darkTheme .counterLabel {
+    color: #c7bebc;
 }
 
-.authModal .closeButton:hover {
-    background: var(--color-accent);
-    border-color: var(--color-accent);
-    color: white;
-    transform: rotate(90deg);
+.valentinePage.darkTheme .counterValue {
+    color: #d4a8a8;
 }
 
-.authModal .form {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+.valentinePage.darkTheme .meetingCounter {
+    background: rgba(212, 168, 168, 0.08);
+    border-color: rgba(212, 168, 168, 0.2);
 }
 
-.authModal .formGroup {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+.valentinePage.darkTheme .meetingText {
+    color: #e0c0c0;
 }
 
-.authModal .label {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--color-secondary);
-    font-weight: 300;
+.valentinePage.darkTheme .meetingNumber {
+    color: #e0c0c0;
 }
 
-.authModal .input {
-    padding: 14px 16px;
-    background: var(--color-bg);
-    border: 1px solid rgba(240, 230, 230, 0.8);
-    border-radius: 3px;
-    font-size: 1rem;
-    color: var(--color-text-light);
-    transition: all 0.2s ease;
-    font-family: inherit;
+.valentinePage.darkTheme .meetingUnit {
+    color: #a89b99;
 }
 
-.authModal .input:focus {
-    outline: none;
-    border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px rgba(212, 168, 168, 0.1);
-}
-
-.authModal .inputError {
-    border-color: #e0a0a0;
-}
-
-.authModal .errorText {
-    color: #c45a5a;
-    font-size: 0.8rem;
-    margin-top: 4px;
-    letter-spacing: 0.5px;
-}
-
-.authModal .errorMessage {
-    background: rgba(224, 160, 160, 0.1);
-    border: 1px solid rgba(224, 160, 160, 0.3);
-    padding: 14px 18px;
-    border-radius: 3px;
-    color: #c45a5a;
-    font-size: 0.95rem;
-    text-align: center;
-    margin-bottom: 8px;
-}
-
-.authModal .successMessage {
-    background: rgba(160, 200, 180, 0.1);
-    border: 1px solid rgba(160, 200, 180, 0.3);
-    padding: 14px 18px;
-    border-radius: 3px;
-    color: #4a7a6a;
-    font-size: 0.95rem;
-    text-align: center;
-}
-
-.authModal .submitButton {
-    background: var(--color-accent);
-    color: white;
-    border: none;
-    padding: 16px 24px;
-    border-radius: 3px;
-    font-size: 1rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: 400;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    margin-top: 8px;
-    box-shadow: 0 4px 16px rgba(212, 168, 168, 0.3);
-}
-
-.authModal .submitButton:hover:not(:disabled) {
-    background: #b28b8b;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(212, 168, 168, 0.4);
-}
-
-.authModal .submitButton:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-/* Тёмная тема для модалки */
-.valentinePage.darkTheme .authModal .overlay {
-    background-color: rgba(20, 18, 17, 0.85);
-}
-
-.valentinePage.darkTheme .authModal .modal {
-    background: var(--color-bg-light);
-    border-color: rgba(96, 90, 90, 0.8);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-}
-
-.valentinePage.darkTheme .authModal .header h2 {
-    color: var(--color-text-light);
-}
-
-.valentinePage.darkTheme .authModal .closeButton {
-    border-color: rgba(96, 90, 90, 0.8);
-    color: var(--color-text-light);
-}
-
-.valentinePage.darkTheme .authModal .closeButton:hover {
-    background: var(--color-accent);
-    border-color: var(--color-accent);
-    color: white;
-}
-
-.valentinePage.darkTheme .authModal .input {
-    background: rgba(30, 28, 27, 0.8);
-    border-color: rgba(96, 90, 90, 0.8);
-    color: var(--color-text-light);
-}
-
-.valentinePage.darkTheme .authModal .input:focus {
-    border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px rgba(212, 168, 168, 0.15);
-}
-
-.valentinePage.darkTheme .authModal .errorMessage {
-    background: rgba(196, 90, 90, 0.1);
-    border-color: rgba(196, 90, 90, 0.2);
-}
-
-.valentinePage.darkTheme .authModal .successMessage {
-    background: rgba(90, 140, 120, 0.1);
-    border-color: rgba(90, 140, 120, 0.2);
-}
-
-/* ===== АНИМАЦИИ ===== */
 @keyframes floatOrnament {
 
     0%,
@@ -1404,29 +1316,6 @@
     }
 }
 
-@keyframes modalFadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes modalZoomIn {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-/* ===== АДАПТАЦИЯ ПОД МОБИЛЬНЫЕ ===== */
 @media (max-width: 1024px) {
     .valentineContainer {
         max-width: 700px;
@@ -1538,7 +1427,6 @@
         font-size: 1.1rem;
     }
 
-    /* Кнопки управления на мобильных */
     .topControls {
         top: 16px;
         right: 16px;
@@ -1701,18 +1589,6 @@
         font-size: 1.5rem;
         order: -1;
     }
-
-    .authModal .modal {
-        padding: 28px 20px;
-    }
-
-    .authModal .input {
-        padding: 12px 14px;
-    }
-
-    .authModal .submitButton {
-        padding: 14px 20px;
-    }
 }
 
 @media (max-width: 360px) {
@@ -1806,26 +1682,6 @@
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
     }
-
-    .floatingOrnament,
-    .flyingElement,
-    .heartOutline,
-    .mainHeart.heartWarm .heartFill,
-    .heartSparkle,
-    .secretKiss,
-    .wishHeart,
-    .dateStampInner::before,
-    .letterSeal::before {
-        animation: none !important;
-    }
-
-    .mainHeart:hover .heartFill {
-        transform: none;
-    }
-
-    .promiseCard:hover {
-        transform: none;
-    }
 }
 
 @media (hover: none) and (pointer: coarse) {
@@ -1835,7 +1691,7 @@
     }
 
     .mainHeart:active .heartFill {
-        color: var(--color-accent);
+        color: #d4a8a8;
         transform: scale(1.05);
     }
 
