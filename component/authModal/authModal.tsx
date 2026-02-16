@@ -37,7 +37,7 @@ export const AuthModal = ({ isOpen, onClose, className, theme, ...props }: AuthM
 
   const onSubmit = (data: FormDataProps) => {
     try {
-      if (data.login === 'admin' && data.password === 'love_dash') {
+      if (data.login === process.env.NEXT_PUBLIC_ADMIN_LOGIN && data.password === process.env.NEXT_PUBLIC_ADMIN_PASS) {
         setUser({ login: 'Admin' });
         onClose();
       } else {
