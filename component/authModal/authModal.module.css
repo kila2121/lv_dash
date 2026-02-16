@@ -4,126 +4,132 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 1000;
     opacity: 0;
-    animation: modalFadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: modalFadeIn 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     will-change: opacity;
 }
 
 .modal {
-    background: var(--color-bg-light);
-    border-radius: 3px;
-    padding: clamp(24px, 5vh, 48px) clamp(16px, 4vw, 40px);
-    max-width: min(420px, 90vw);
-    width: 90%;
+    background: #ffffff;
+    border-radius: clamp(12px, 3vw, 16px);
+    padding: clamp(24px, 5vw, 32px) clamp(20px, 4vw, 32px);
+    max-width: min(400px, 90%);
+    width: 100%;
     max-height: min(90vh, 800px);
     overflow-y: auto;
-    border: 1px solid rgba(240, 230, 230, 0.8);
-    box-shadow: 0 20px 40px rgba(139, 128, 126, 0.12);
+    border: 1px solid #f0e6e6;
+    box-shadow: 0 20px 40px rgba(139, 128, 126, 0.15);
     position: relative;
     transform: scale(0.95);
-    animation: modalZoomIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: modalZoomIn 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    will-change: transform, opacity;
     -webkit-overflow-scrolling: touch;
-    transform: translateZ(0);
-    backface-visibility: hidden;
 }
 
+/* Кастомный скроллбар */
 .modal::-webkit-scrollbar {
     width: 4px;
 }
 
 .modal::-webkit-scrollbar-track {
-    background: var(--color-bg);
-    border-radius: 2px;
+    background: #f5f5f5;
+    border-radius: 4px;
 }
 
 .modal::-webkit-scrollbar-thumb {
-    background: rgba(139, 128, 126, 0.3);
-    border-radius: 2px;
+    background: #d4a8a8;
+    border-radius: 4px;
+    transition: background 0.2s ease;
 }
 
+.modal::-webkit-scrollbar-thumb:hover {
+    background: #b28b8b;
+}
+
+/* Хедер */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: clamp(20px, 3vh, 32px);
+    margin-bottom: clamp(20px, 3vh, 24px);
 }
 
 .header h2 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(1.3rem, 5vw, 1.8rem);
-    font-weight: 300;
-    color: var(--color-primary);
+    font-size: clamp(1.4rem, 5vw, 1.8rem);
+    font-weight: 400;
+    color: #2c1810;
     margin: 0;
-    letter-spacing: 1px;
+    line-height: 1.2;
 }
 
+/* Кнопка закрытия */
 .closeButton {
-    width: clamp(28px, 5vw, 36px);
-    height: clamp(28px, 5vw, 36px);
+    width: clamp(32px, 8vw, 36px);
+    height: clamp(32px, 8vw, 36px);
     border-radius: 50%;
     background: transparent;
-    border: 1px solid rgba(240, 230, 230, 0.6);
-    color: var(--color-secondary);
-    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    border: 1px solid #f0e6e6;
+    color: #8b807e;
+    font-size: clamp(1.2rem, 4vw, 1.4rem);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 0;
-    -webkit-tap-highlight-color: transparent;
+    flex-shrink: 0;
 }
 
-@media (hover: hover) {
-    .closeButton:hover {
-        background: var(--color-accent);
-        border-color: var(--color-accent);
-        color: white;
-        transform: rotate(90deg);
-    }
+.closeButton:hover {
+    background: #d4a8a8;
+    border-color: #d4a8a8;
+    color: white;
+    transform: rotate(90deg);
 }
 
+.closeButton:active {
+    transform: rotate(90deg) scale(0.95);
+}
+
+/* Форма */
 .form {
     display: flex;
     flex-direction: column;
-    gap: clamp(16px, 2vh, 24px);
-}
-
-.loginForm {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(12px, 1.5vh, 16px);
+    gap: clamp(16px, 2.5vh, 20px);
 }
 
 .formGroup {
     display: flex;
     flex-direction: column;
-    gap: clamp(4px, 1vh, 8px);
+    gap: clamp(4px, 1vh, 6px);
 }
 
 .label {
-    font-size: clamp(0.75rem, 2vw, 0.85rem);
+    font-size: clamp(0.8rem, 2.5vw, 0.85rem);
     text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--color-secondary);
-    font-weight: 300;
+    letter-spacing: 0.5px;
+    color: #8b807e;
+    font-weight: 400;
+    transition: color 0.2s ease;
 }
 
+/* Поля ввода */
 .input {
-    padding: clamp(10px, 2vh, 14px) clamp(12px, 2vw, 16px);
-    background: var(--color-bg);
-    border: 1px solid rgba(240, 230, 230, 0.8);
-    border-radius: 3px;
-    font-size: clamp(0.95rem, 2.5vw, 1rem);
-    color: var(--color-text-light);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    padding: clamp(10px, 2vh, 12px) clamp(12px, 2.5vw, 16px);
+    background: #f9f9f9;
+    border: 1px solid #f0e6e6;
+    border-radius: clamp(6px, 2vw, 8px);
+    font-size: clamp(0.95rem, 3vw, 1rem);
+    color: #2c1810;
+    transition: all 0.2s ease;
     font-family: inherit;
     width: 100%;
     box-sizing: border-box;
@@ -132,195 +138,142 @@
 
 .input:focus {
     outline: none;
-    border-color: var(--color-accent);
+    border-color: #d4a8a8;
     box-shadow: 0 0 0 3px rgba(212, 168, 168, 0.1);
+    background: #ffffff;
 }
 
 .inputError {
     border-color: #e0a0a0;
 }
 
-.errorText {
-    color: #c45a5a;
-    font-size: 0.8rem;
-    margin-top: 2px;
+.inputError:focus {
+    border-color: #c45a5a;
+    box-shadow: 0 0 0 3px rgba(196, 90, 90, 0.1);
 }
 
+/* Текст ошибки поля */
+.errorText {
+    color: #c45a5a;
+    font-size: 0.75rem;
+    margin-top: 2px;
+    line-height: 1.2;
+}
+
+/* Сообщение об ошибке */
 .errorMessage {
     background: rgba(224, 160, 160, 0.1);
     border: 1px solid rgba(224, 160, 160, 0.3);
-    padding: clamp(10px, 2vh, 14px);
-    border-radius: 3px;
+    padding: clamp(10px, 2vh, 12px) clamp(12px, 2.5vw, 16px);
+    border-radius: clamp(6px, 2vw, 8px);
     color: #c45a5a;
-    font-size: 0.95rem;
+    font-size: clamp(0.85rem, 2.5vw, 0.95rem);
     text-align: center;
-    margin-bottom: 4px;
+    margin: 4px 0;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
-.successMessage {
-    background: rgba(160, 200, 180, 0.1);
-    border: 1px solid rgba(160, 200, 180, 0.3);
-    padding: clamp(10px, 2vh, 14px);
-    border-radius: 3px;
-    color: #4a7a6a;
-    font-size: 0.95rem;
-    text-align: center;
-}
-
+/* Кнопка отправки */
 .submitButton {
-    background: var(--color-accent);
+    background: #d4a8a8;
     color: white;
     border: none;
-    padding: clamp(12px, 2.5vh, 16px) clamp(16px, 3vw, 24px);
-    border-radius: 3px;
-    font-size: clamp(0.95rem, 2.5vw, 1rem);
-    letter-spacing: 1px;
+    padding: clamp(12px, 2.5vh, 14px) clamp(16px, 3vw, 24px);
+    border-radius: clamp(6px, 2vw, 8px);
+    font-size: clamp(0.9rem, 3vw, 1rem);
+    letter-spacing: 0.5px;
     text-transform: uppercase;
-    font-weight: 400;
+    font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
-    margin-top: 4px;
-    box-shadow: 0 4px 16px rgba(212, 168, 168, 0.3);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: clamp(4px, 1vh, 8px);
+    box-shadow: 0 4px 12px rgba(212, 168, 168, 0.3);
     width: 100%;
     min-height: 44px;
-    -webkit-tap-highlight-color: transparent;
 }
 
-@media (hover: hover) {
-    .submitButton:hover:not(:disabled) {
-        background: #b28b8b;
-        transform: translateY(-1px);
-        box-shadow: 0 8px 24px rgba(212, 168, 168, 0.4);
-    }
+.submitButton:hover:not(:disabled) {
+    background: #b28b8b;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(212, 168, 168, 0.4);
 }
 
 .submitButton:active:not(:disabled) {
-    transform: translateY(1px);
+    transform: translateY(0);
 }
 
 .submitButton:disabled {
-    opacity: 0.6;
+    opacity: 0.5;
     cursor: not-allowed;
 }
 
-:global(.valentinePage.darkTheme) .overlay {
-    background-color: rgba(20, 18, 17, 0.85);
-    backdrop-filter: blur(8px) brightness(0.8);
-}
-
-:global(.valentinePage.darkTheme) .modal {
-    background: var(--color-bg-light);
-    border-color: rgba(96, 90, 90, 0.8);
+/* ===== ТЁМНАЯ ТЕМА ===== */
+.darkTheme .modal {
+    background: #1e1e1e;
+    border-color: #333333;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
-:global(.valentinePage.darkTheme) .modal::-webkit-scrollbar-track {
-    background: rgba(30, 28, 27, 0.8);
+.darkTheme .modal::-webkit-scrollbar-track {
+    background: #2a2a2a;
 }
 
-:global(.valentinePage.darkTheme) .modal::-webkit-scrollbar-thumb {
-    background: rgba(194, 184, 182, 0.2);
+.darkTheme .modal::-webkit-scrollbar-thumb {
+    background: #d4a8a8;
 }
 
-:global(.valentinePage.darkTheme) .header h2 {
-    color: var(--color-text-light);
+.darkTheme .modal::-webkit-scrollbar-thumb:hover {
+    background: #b28b8b;
 }
 
-:global(.valentinePage.darkTheme) .closeButton {
-    border-color: rgba(96, 90, 90, 0.8);
-    color: var(--color-text-light);
+.darkTheme .header h2 {
+    color: #f0e6e6;
 }
 
-:global(.valentinePage.darkTheme) .closeButton:hover {
-    background: var(--color-accent);
-    border-color: var(--color-accent);
+.darkTheme .closeButton {
+    border-color: #333333;
+    color: #a89b99;
+}
+
+.darkTheme .closeButton:hover {
+    background: #d4a8a8;
+    border-color: #d4a8a8;
     color: white;
 }
 
-:global(.valentinePage.darkTheme) .input {
-    background: rgba(30, 28, 27, 0.8);
-    border-color: rgba(96, 90, 90, 0.8);
-    color: var(--color-text-light);
+.darkTheme .label {
+    color: #a89b99;
 }
 
-:global(.valentinePage.darkTheme) .input:focus {
-    border-color: var(--color-accent);
+.darkTheme .input {
+    background: #2a2a2a;
+    border-color: #333333;
+    color: #f0e6e6;
+}
+
+.darkTheme .input:focus {
+    border-color: #d4a8a8;
     box-shadow: 0 0 0 3px rgba(212, 168, 168, 0.2);
+    background: #333333;
 }
 
-:global(.valentinePage.darkTheme) .errorMessage {
+.darkTheme .errorMessage {
     background: rgba(196, 90, 90, 0.15);
     border-color: rgba(196, 90, 90, 0.3);
+    color: #e0a0a0;
 }
 
-:global(.valentinePage.darkTheme) .successMessage {
-    background: rgba(90, 140, 120, 0.15);
-    border-color: rgba(90, 140, 120, 0.3);
+.darkTheme .submitButton {
+    background: #d4a8a8;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-:global(.valentinePage.darkTheme) .submitButton {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+.darkTheme .submitButton:hover:not(:disabled) {
+    background: #b28b8b;
 }
 
-@media (orientation: landscape) and (max-height: 600px) {
-    .modal {
-        max-height: 95vh;
-        padding: 16px 24px;
-    }
-
-    .header {
-        margin-bottom: 12px;
-    }
-
-    .form {
-        gap: 10px;
-    }
-
-    .submitButton {
-        margin-top: 0;
-    }
-}
-
-@media (hover: none) and (pointer: coarse) {
-    .closeButton:active {
-        background: var(--color-accent);
-        border-color: var(--color-accent);
-        color: white;
-    }
-
-    .submitButton:active:not(:disabled) {
-        background: #b28b8b;
-        transform: translateY(1px);
-    }
-}
-
-@supports (padding: max(0px)) {
-    .modal {
-        padding-left: max(clamp(16px, 4vw, 40px), env(safe-area-inset-left));
-        padding-right: max(clamp(16px, 4vw, 40px), env(safe-area-inset-right));
-        padding-top: max(clamp(24px, 5vh, 48px), env(safe-area-inset-top));
-        padding-bottom: max(clamp(24px, 5vh, 48px), env(safe-area-inset-bottom));
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-
-    .overlay,
-    .modal,
-    .closeButton,
-    .submitButton {
-        animation: none;
-        transition: none !important;
-    }
-}
-
-@media (-webkit-min-device-pixel-ratio: 2),
-(min-resolution: 192dpi) {
-    .modal {
-        border-width: 0.5px;
-    }
-}
-
+/* ===== АНИМАЦИИ ===== */
 @keyframes modalFadeIn {
     from {
         opacity: 0;
@@ -343,14 +296,158 @@
     }
 }
 
+/* ===== МЕДИА-ЗАПРОСЫ ===== */
+@media (max-width: 480px) {
+    .modal {
+        padding: 24px 20px;
+    }
+
+    .header h2 {
+        font-size: 1.5rem;
+    }
+
+    .input {
+        padding: 12px 14px;
+    }
+
+    .submitButton {
+        padding: 14px 20px;
+    }
+
+    .closeButton {
+        width: 34px;
+        height: 34px;
+    }
+}
+
+@media (max-width: 360px) {
+    .modal {
+        padding: 20px 16px;
+    }
+
+    .header h2 {
+        font-size: 1.3rem;
+    }
+
+    .closeButton {
+        width: 32px;
+        height: 32px;
+        font-size: 1.2rem;
+    }
+
+    .label {
+        font-size: 0.75rem;
+    }
+
+    .input {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+
+    .submitButton {
+        padding: 12px 16px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Landscape ориентация */
+@media (orientation: landscape) and (max-height: 600px) {
+    .modal {
+        max-height: 95vh;
+        padding: 16px 24px;
+    }
+
+    .header {
+        margin-bottom: 12px;
+    }
+
+    .form {
+        gap: 12px;
+    }
+
+    .submitButton {
+        margin-top: 4px;
+    }
+}
+
+/* Touch устройства */
+@media (hover: none) and (pointer: coarse) {
+    .closeButton:hover {
+        background: transparent;
+        border-color: #f0e6e6;
+        color: #8b807e;
+        transform: none;
+    }
+
+    .closeButton:active {
+        background: #d4a8a8;
+        border-color: #d4a8a8;
+        color: white;
+        transform: scale(0.95);
+    }
+
+    .submitButton:hover:not(:disabled) {
+        background: #d4a8a8;
+        transform: none;
+    }
+
+    .submitButton:active:not(:disabled) {
+        background: #b28b8b;
+        transform: translateY(-1px);
+    }
+}
+
+/* Учет safe area */
+@supports (padding: max(0px)) {
+    .modal {
+        padding-left: max(20px, env(safe-area-inset-left));
+        padding-right: max(20px, env(safe-area-inset-right));
+        padding-top: max(24px, env(safe-area-inset-top));
+        padding-bottom: max(24px, env(safe-area-inset-bottom));
+    }
+}
+
+/* Уменьшение анимации */
+@media (prefers-reduced-motion: reduce) {
+
+    .overlay,
+    .modal,
+    .closeButton,
+    .submitButton,
+    .input {
+        animation: none;
+        transition: none !important;
+    }
+
+    .closeButton:hover {
+        transform: none;
+    }
+
+    .submitButton:hover:not(:disabled) {
+        transform: none;
+    }
+}
+
+/* Высокий DPI */
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+    .modal {
+        border-width: 0.5px;
+    }
+}
+
+/* Оптимизация производительности */
 .modal,
 .closeButton,
-.submitButton {
+.submitButton,
+.input {
     transform: translateZ(0);
     backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
 .overlay,
 .modal {
     content-visibility: auto;
+    contain: layout style paint;
 }

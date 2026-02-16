@@ -6,6 +6,7 @@ import { useAuth } from '@/pages/_app';
 interface AuthModalProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   isOpen: boolean;
   onClose: () => void;
+  theme: boolean;
 }
 
 interface FormDataProps {
@@ -13,46 +14,48 @@ interface FormDataProps {
   password: string;
 }
 
-export const AuthModal = ({ isOpen, onClose, className, ...props }: AuthModalProps): JSX.Element => {
-  const { register, handleSubmit, formState: { errors, isSubmitting }, reset, } = useForm<FormDataProps>({mode: 'onBlur'})
+export const AuthModal = ({ isOpen, onClose, className, theme, ...props }: AuthModalProps): JSX.Element => {
+  const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<FormDataProps>({
+    mode: 'onBlur'
+  });
 
-  const [authError, setAuthError] = useState<string>('')
-  const {setUser} = useAuth()
+  const [authError, setAuthError] = useState<string>('');
+  const { setUser } = useAuth();
   
   useEffect(() => {
     if (!isOpen) {
-      reset()
-      setTimeout(()=>{
-        setAuthError('')
-      }, 100)
+      reset();
+      setTimeout(() => {
+        setAuthError('');
+      }, 100);
     }
-  }, [isOpen, reset])
+  }, [isOpen, reset]);
 
   const handleClose = () => {
-    onClose()
-  }
+    onClose();
+  };
 
   const onSubmit = (data: FormDataProps) => {
     try {
-        if (data.login === 'admin' && data.password === 'love_dash') {
-            setUser({ login: 'Admin' });
-            onClose();
-        }else{
-            setAuthError('Неверный логин или пароль');
-        }
+      if (data.login === 'admin' && data.password === 'love_dash') {
+        setUser({ login: 'Admin' });
+        onClose();
+      } else {
+        setAuthError('Неверный логин или пароль');
+      }
     } catch (error) {
-      setAuthError('Ошибка соединения')
+      setAuthError('Ошибка соединения');
     }
-  }
+  };
 
-  if (!isOpen) return <></>
+  if (!isOpen) return <></>;
 
   return (
     <div 
-        className={`${styles.overlay} ${className || ''}`} 
-        onClick={handleClose}
-        {...props}>
-
+      className={`${styles.overlay} ${theme ? styles.darkTheme : ''}`} 
+      onClick={handleClose}
+      {...props}
+    >
       <div
         className={styles.modal}
         onClick={(e) => e.stopPropagation()}
@@ -125,5 +128,5 @@ export const AuthModal = ({ isOpen, onClose, className, ...props }: AuthModalPro
         </form>
       </div>
     </div>
-  )
-}
+  );
+};

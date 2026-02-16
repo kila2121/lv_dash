@@ -6,13 +6,14 @@ import { useAuth } from '@/pages/_app';
 interface SettingModalProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   isOpen: boolean;
   onClose: () => void;
+  theme: boolean;
 }
 
 export interface SettingUser{
   want_to_date: string | null;
 }
 
-export const SettingModal = ({ isOpen, onClose, className, ...props }: SettingModalProps): JSX.Element => {
+export const SettingModal = ({ isOpen, onClose, className, theme, ...props }: SettingModalProps): JSX.Element => {
 
   const { register, handleSubmit, formState: { errors, isSubmitting }, reset, } = useForm<SettingUser>({mode: 'onBlur'})
 
@@ -57,8 +58,7 @@ export const SettingModal = ({ isOpen, onClose, className, ...props }: SettingMo
   if (!isOpen) return <></>
 
   return (
-    <>
-      {/* Затемнение фона */}
+    <div className={theme ? styles.darkTheme : ''}>
       <div 
         className={`${styles.overlay} ${isOpen ? styles.active : ''}`} 
         onClick={handleClose}
@@ -69,7 +69,7 @@ export const SettingModal = ({ isOpen, onClose, className, ...props }: SettingMo
         className={`${styles.settingsPanel} ${isOpen ? styles.open : ''} ${className || ''}`}
         {...props}
       >
-        <div className={styles.header}>
+        <div className={`${styles.header}`}>
           <h2>Настройки</h2>
           <button
             className={styles.closeButton}
@@ -108,9 +108,9 @@ export const SettingModal = ({ isOpen, onClose, className, ...props }: SettingMo
           >
             {isSubmitting ? 'Сохранение...' : 'Сохранить'}
           </button>
-          <button className={styles.adminButton}onClick={handleLogout}>Выйти</button>
+          <button className={styles.adminButton} onClick={handleLogout}>Выйти</button>
         </form>
       </div>
-    </>
+    </div>
   )
 }

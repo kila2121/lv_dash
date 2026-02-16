@@ -49,6 +49,13 @@ function ValentineCard(): JSX.Element {
 
   const startDay = new Date("02-02-2026"); 
   const currentDay = new Date();
+  const meetingDate = userSetting?.want_to_date? new Date (userSetting.want_to_date): null;
+
+  currentDay.setHours(0, 0, 0, 0);
+  if(meetingDate){
+    meetingDate.setHours(0, 0, 0, 0);
+  }
+  
   const daysTogether: number = Math.floor((Number(currentDay) - Number(startDay)) / (1000 * 60 * 60 * 24));
   const meetingDay: number | string = userSetting?.want_to_date? Math.floor(
       (new Date(userSetting.want_to_date).getTime() - currentDay.getTime()) / 
@@ -180,11 +187,13 @@ function ValentineCard(): JSX.Element {
         isOpen={isAuthModalOpen} 
         onClose={() => setIsAuthModalOpen(false)}
         className={styles.authModal}
+        theme={isDarkMode}
       />
       <SettingModal 
         isOpen={isSettingModalOpen}
         onClose={()=>setIsSettingModalOpen(false)}
         className={styles.settModal}
+        theme={isDarkMode}
         />
       <div className={styles.backgroundElements}>
         <div className={styles.floatingOrnament}>❦</div>
@@ -225,9 +234,23 @@ function ValentineCard(): JSX.Element {
             <p className={styles.subtitle}>
               Просто письмо от сердца к сердцу
             </p>
-            <p>
-              {userSetting?.want_to_date? "мы увидимся с тобой через: " + String(meetingDay): <></> }
-            </p>
+            {userSetting?.want_to_date && (
+              <div className={styles.meetingCounter}>
+                {typeof meetingDay === 'number' && meetingDay > 0 ? (
+                  <span className={styles.meetingText}>
+                    мы увидимся с тобой через: <span className={styles.meetingNumber}>{meetingDay}</span> <span className={styles.meetingUnit}>дн.</span>
+                  </span>
+                ) : typeof meetingDay === 'number' && meetingDay === 0 ? (
+                  <span className={`${styles.meetingText}`}>
+                    Сегодня!
+                  </span>
+                ) : typeof meetingDay === 'number' && meetingDay < 0 ? (
+                  <span className={`${styles.meetingText}`}>
+                    встреча была <span className={styles.meetingNumber}>{Math.abs(meetingDay)}</span> <span className={styles.meetingUnit}>дн.</span> назад
+                  </span>
+                ) : <></>}
+              </div>
+            )}
           </div>
           
           <div className={styles.dateStamp}>
